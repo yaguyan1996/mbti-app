@@ -204,7 +204,7 @@ export default function ConsultationPage() {
   }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === 'Enter' && (e.shiftKey || e.metaKey)) {
       e.preventDefault()
       sendMessage()
     }
@@ -454,7 +454,7 @@ export default function ConsultationPage() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="メッセージを入力...（Enterで送信、Shift+Enterで改行）"
+                placeholder="メッセージを入力...（Shift+Enterまたは⌘+Enterで送信）"
                 className="flex-1 bg-transparent text-white placeholder-gray-500 text-sm resize-none outline-none"
                 style={{ maxHeight: '120px', minHeight: '40px' }}
                 rows={1}
