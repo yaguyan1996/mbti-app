@@ -15,7 +15,9 @@ export async function GET(request: NextRequest) {
 
     const user = await getUser(payload.userId)
     if (!user) {
-      return NextResponse.json({ error: 'ユーザーが見つかりません' }, { status: 404 })
+      const response = NextResponse.json({ error: 'ユーザーが見つかりません' }, { status: 404 })
+      response.cookies.set('auth_token', '', { maxAge: 0, path: '/' })
+      return response
     }
 
     return NextResponse.json({ user: sanitizeUser(user) })
