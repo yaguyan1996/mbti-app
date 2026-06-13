@@ -33,6 +33,7 @@ export default function Navbar() {
             <NavLink href="/">ホーム</NavLink>
             <NavLink href="/types">16タイプ</NavLink>
             <NavLink href="/test">診断テスト</NavLink>
+            <NavLink href="/guide">使い方</NavLink>
             {user && <NavLink href="/consultation">AI相談</NavLink>}
             {user && <NavLink href="/dashboard">ダッシュボード</NavLink>}
           </div>
@@ -107,12 +108,14 @@ export default function Navbar() {
             <MobileNavLink href="/" onClick={() => setMenuOpen(false)}>ホーム</MobileNavLink>
             <MobileNavLink href="/types" onClick={() => setMenuOpen(false)}>16タイプ</MobileNavLink>
             <MobileNavLink href="/test" onClick={() => setMenuOpen(false)}>診断テスト</MobileNavLink>
+            <MobileNavLink href="/guide" onClick={() => setMenuOpen(false)}>使い方</MobileNavLink>
             {user && (
               <>
                 <MobileNavLink href="/consultation" onClick={() => setMenuOpen(false)}>AI相談</MobileNavLink>
                 <MobileNavLink href="/dashboard" onClick={() => setMenuOpen(false)}>ダッシュボード</MobileNavLink>
               </>
             )}
+            <MobileNavLink href="/contact" onClick={() => setMenuOpen(false)}>お問い合わせ</MobileNavLink>
             <div className="pt-3 border-t border-indigo-900/30 flex flex-col gap-2">
               {user ? (
                 <>
