@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/hooks/useAuth'
@@ -11,9 +11,29 @@ import type { MbtiType, CognitiveFunctionId } from '@/lib/mbti-data'
 const functionPositionLabels = ['主機能', '補助機能', '第3機能', '劣等機能']
 const shadowFunctionLabels = ['反対人格', '批判的な親', 'トリックスター', '悪魔']
 
+const ALL_TYPES: MbtiType[] = [
+  'INTJ','INTP','ENTJ','ENTP',
+  'INFJ','INFP','ENFJ','ENFP',
+  'ISTJ','ISFJ','ESTJ','ESFJ',
+  'ISTP','ISFP','ESTP','ESFP',
+]
+
 export default function DashboardPage() {
   const { user, loading } = useAuth()
   const router = useRouter()
+  const [selectedType, setSelectedType] = useState<MbtiType | ''>('')
+  const [saving, setSaving] = useState(false)
+
+  const saveType = async () => {
+    if (!selectedType) return
+    setSaving(true)
+    await fetch('/api/mbti/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ mbtiType: selectedType }),
+    })
+    window.location.reload()
+  }
 
   useEffect(() => {
     if (!loading && !user) {
@@ -199,23 +219,77 @@ export default function DashboardPage() {
         ) : (
           /* No type yet */
           <div
-            className="p-10 rounded-2xl text-center mb-6 animate-slide-up"
+            className="p-8 rounded-2xl mb-6 animate-slide-up"
             style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.2)' }}
           >
-            <div className="text-6xl mb-4">🔍</div>
-            <h2 className="text-2xl font-bold text-white mb-3">
-              まだ診断を受けていません
-            </h2>
-            <p className="text-gray-400 mb-6">
-              20問の質問に答えて、あなたのMBTIタイプと認知機能スタックを発見しましょう
-            </p>
-            <Link
-              href="/test"
-              className="inline-block px-8 py-3 rounded-xl text-white font-semibold transition-all hover:opacity-90"
-              style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
-            >
-              診断テストを受ける
-            </Link>
+            <div className="text-center mb-8">
+              <div className="text-5xl mb-3">🔍</div>
+              <h2 className="text-2xl font-bold text-white mb-2">MBTIタイプを設定しましょう</h2>
+              <p className="text-gray-400">診断テストを受けるか、すでにタイプを知っている場合は直接選択できます</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* 直接選択 */}
+              <div
+                className="p-6 rounded-xl"
+                style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.2)' }}
+              >
+                <h3 className="text-white font-bold mb-1">すでにタイプを知っている</h3>
+                <p className="text-gray-500 text-sm mb-4">16タイプから選択してください</p>
+                <div className="grid grid-cols-4 gap-2 mb-4">
+                  {ALL_TYPES.map((type) => {
+                    const t = mbtiTypes[type]
+                    return (
+                      <button
+                        key={type}
+                        onClick={() => setSelectedType(type)}
+                        className="py-2 rounded-lg text-sm font-bold transition-all"
+                        style={{
+                          background: selectedType === type ? `${t.color}30` : 'rgba(255,255,255,0.05)',
+                          border: `1px solid ${selectedType === type ? t.color : 'rgba(255,255,255,0.1)'}`,
+                          color: selectedType === type ? t.color : '#9ca3af',
+                        }}
+                      >
+                        {type}
+                      </button>
+                    )
+                  })}
+                </div>
+                {selectedType && (
+                  <div className="mb-3 text-sm text-gray-300">
+                    <span style={{ color: mbtiTypes[selectedType].color }} className="font-bold">{selectedType}</span>
+                    {' '}— {mbtiTypes[selectedType].name}
+                  </div>
+                )}
+                <button
+                  onClick={saveType}
+                  disabled={!selectedType || saving}
+                  className="w-full py-2.5 rounded-xl text-white font-semibold transition-all disabled:opacity-40"
+                  style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
+                >
+                  {saving ? '保存中...' : 'このタイプに設定する'}
+                </button>
+              </div>
+
+              {/* 診断テスト */}
+              <div
+                className="p-6 rounded-xl flex flex-col"
+                style={{ background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.2)' }}
+              >
+                <h3 className="text-white font-bold mb-1">診断テストを受ける</h3>
+                <p className="text-gray-500 text-sm mb-4">20問の質問に答えてタイプを診断します</p>
+                <div className="flex-1 flex items-center justify-center py-4">
+                  <div className="text-5xl">📋</div>
+                </div>
+                <Link
+                  href="/test"
+                  className="block text-center py-2.5 rounded-xl text-white font-semibold transition-all hover:opacity-90"
+                  style={{ background: 'linear-gradient(135deg, #10b981, #059669)' }}
+                >
+                  診断テストを受ける
+                </Link>
+              </div>
+            </div>
           </div>
         )}
 
