@@ -28,8 +28,16 @@ export async function middleware(request: NextRequest) {
   }
 
   // Redirect to dashboard if authenticated and accessing auth routes
+  // But if JWT is invalid (expired/bad), clear the cookie instead
   if (authRoutes.some((route) => pathname.startsWith(route)) && isAuthenticated) {
     return NextResponse.redirect(new URL('/dashboard', request.url))
+  }
+
+  // Clear invalid/stale cookie
+  if (token && !isAuthenticated) {
+    const res = NextResponse.next()
+    res.cookies.set('auth_token', '', { maxAge: 0, path: '/' })
+    return res
   }
 
   return NextResponse.next()
