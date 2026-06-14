@@ -21,9 +21,6 @@ export function useAuth() {
         setUser(data.user)
       } else {
         setUser(null)
-        if (res.status === 401 || res.status === 404) {
-          window.location.href = '/login'
-        }
       }
     } catch {
       setUser(null)
