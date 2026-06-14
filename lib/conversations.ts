@@ -17,14 +17,20 @@ function filePath(userId: string) {
   return path.join(DATA_DIR, `conversations_${userId}.json`)
 }
 
+function getRedis() {
+  const { Redis } = require('@upstash/redis')
+  return new Redis({
+    url: process.env.KV_REST_API_URL!,
+    token: process.env.KV_REST_API_KEY!,
+  })
+}
+
 async function kvGet<T>(key: string): Promise<T | null> {
-  const { kv } = await import('@vercel/kv')
-  return kv.get<T>(key)
+  return getRedis().get<T>(key)
 }
 
 async function kvSet(key: string, value: unknown): Promise<void> {
-  const { kv } = await import('@vercel/kv')
-  await kv.set(key, value)
+  await getRedis().set(key, value)
 }
 
 const useKV = () => !!process.env.KV_REST_API_URL
