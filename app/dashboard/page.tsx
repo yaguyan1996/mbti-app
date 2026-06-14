@@ -5,8 +5,9 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/lib/hooks/useAuth'
 import Navbar from '@/components/Navbar'
-import { mbtiTypes, cognitiveFunctions } from '@/lib/mbti-data'
+import { mbtiTypes } from '@/lib/mbti-data'
 import type { MbtiType, CognitiveFunctionId } from '@/lib/mbti-data'
+import CognitiveFunctionCard from '@/components/CognitiveFunctionCard'
 
 const functionPositionLabels = ['主機能', '補助機能', '第3機能', '劣等機能']
 const shadowFunctionLabels = ['反対人格', '批判的な親', 'トリックスター', '悪魔']
@@ -110,29 +111,18 @@ export default function DashboardPage() {
             {/* Function Stack */}
             <div className="mb-6">
               <h2 className="text-xl font-bold text-white mb-4">認知機能スタック</h2>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {functions.map((funcId, idx) => {
-                  const func = cognitiveFunctions[funcId as CognitiveFunctionId]
-                  const opacity = [1, 0.85, 0.65, 0.45][idx]
+                  const opacities = [1, 0.85, 0.65, 0.45]
                   return (
-                    <div
+                    <CognitiveFunctionCard
                       key={funcId}
-                      className="p-4 rounded-xl"
-                      style={{
-                        background: `${typeData.color}${Math.round(opacity * 15).toString(16).padStart(2, '0')}`,
-                        border: `1px solid ${typeData.color}${Math.round(opacity * 40).toString(16).padStart(2, '0')}`,
-                        opacity: 0.5 + opacity * 0.5,
-                      }}
-                    >
-                      <div className="text-xs text-gray-400 mb-1">{functionPositionLabels[idx]}</div>
-                      <div className="text-2xl font-bold" style={{ color: typeData.color }}>
-                        {funcId}
-                      </div>
-                      <div className="text-white text-sm font-medium mt-1">{func.name}</div>
-                      <div className="text-gray-400 text-xs mt-1 leading-relaxed line-clamp-2">
-                        {func.keywords.slice(0, 3).join(' · ')}
-                      </div>
-                    </div>
+                      funcId={funcId as CognitiveFunctionId}
+                      label={functionPositionLabels[idx]}
+                      color={typeData.color}
+                      opacity={opacities[idx]}
+                      isShadow={false}
+                    />
                   )
                 })}
               </div>
@@ -142,31 +132,19 @@ export default function DashboardPage() {
             <div className="mb-6">
               <h2 className="text-xl font-bold text-white mb-1">シャドー機能スタック</h2>
               <p className="text-gray-500 text-sm mb-4">無意識に働く影の自己。ストレス時や防衛的な場面で現れる。</p>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {shadowFunctions.map((funcId, idx) => {
-                  const func = cognitiveFunctions[funcId as CognitiveFunctionId]
                   const shadowColors = ['#94a3b8', '#78716c', '#a78bfa', '#f43f5e']
-                  const color = shadowColors[idx]
+                  const opacities = [0.7, 0.65, 0.6, 0.55]
                   return (
-                    <div
+                    <CognitiveFunctionCard
                       key={funcId}
-                      className="p-4 rounded-xl"
-                      style={{
-                        background: `${color}10`,
-                        border: `1px solid ${color}30`,
-                      }}
-                    >
-                      <div className="text-xs mb-1" style={{ color: `${color}99` }}>
-                        第{idx + 5}機能 · {shadowFunctionLabels[idx]}
-                      </div>
-                      <div className="text-2xl font-bold" style={{ color }}>
-                        {funcId}
-                      </div>
-                      <div className="text-gray-300 text-sm font-medium mt-1">{func.name}</div>
-                      <div className="text-gray-500 text-xs mt-1 leading-relaxed line-clamp-2">
-                        {func.keywords.slice(0, 3).join(' · ')}
-                      </div>
-                    </div>
+                      funcId={funcId as CognitiveFunctionId}
+                      label={`第${idx + 5}機能 · ${shadowFunctionLabels[idx]}`}
+                      color={shadowColors[idx]}
+                      opacity={opacities[idx]}
+                      isShadow={true}
+                    />
                   )
                 })}
               </div>

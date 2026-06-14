@@ -5,15 +5,25 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import Navbar from '@/components/Navbar'
 import VoiceInput from '@/components/VoiceInput'
+import CognitiveFunctionCard from '@/components/CognitiveFunctionCard'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { mbtiTypes, cognitiveFunctions } from '@/lib/mbti-data'
 import type { MbtiType, CognitiveFunctionId } from '@/lib/mbti-data'
+
+type ConsultationMode = 'analyze' | 'solve' | 'empathize' | 'open'
 
 interface Message {
   role: 'user' | 'assistant'
   content: string
   timestamp: Date
 }
+
+const MODES: { id: ConsultationMode; icon: string; title: string; description: string }[] = [
+  { id: 'analyze', icon: '🔍', title: '整理・分析したい', description: '問題や感情を整理して全体像を把握したい' },
+  { id: 'solve', icon: '💡', title: '解決策を見つけたい', description: '具体的な解決策やアクションプランを見つけたい' },
+  { id: 'empathize', icon: '💝', title: '共感・傾聴してほしい', description: 'まず気持ちを受け止めてもらいたい・アウトプットしたい' },
+  { id: 'open', icon: '💭', title: 'アバウトに相談したい', description: 'とりあえず話したい・何でも相談したい' },
+]
 
 export default function ConsultationPage() {
   const { user, loading } = useAuth()
@@ -23,8 +33,11 @@ export default function ConsultationPage() {
   const [isStreaming, setIsStreaming] = useState(false)
   const [showFunctions, setShowFunctions] = useState(false)
   const [historyLoaded, setHistoryLoaded] = useState(false)
+  const [mode, setMode] = useState<ConsultationMode>('open')
+  const [showModeDropdown, setShowModeDropdown] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (!loading && !user) {
@@ -54,6 +67,17 @@ export default function ConsultationPage() {
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowModeDropdown(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   // Save conversation whenever messages change (debounced)
   useEffect(() => {
@@ -112,6 +136,8 @@ export default function ConsultationPage() {
   const typeKey = user.mbtiType as MbtiType
   const typeData = mbtiTypes[typeKey]
 
+  const currentModeInfo = MODES.find((m) => m.id === mode)!
+
   const sendMessage = async () => {
     if (!input.trim() || isStreaming) return
 
@@ -146,6 +172,7 @@ export default function ConsultationPage() {
         body: JSON.stringify({
           message: userMessage.content,
           conversationHistory: history,
+          mode,
         }),
       })
 
@@ -259,37 +286,45 @@ export default function ConsultationPage() {
               </div>
             </div>
 
-            {/* Function Stack */}
+            {/* Main Functions */}
+            <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+              メイン4機能
+            </div>
             {[
               { funcId: typeData.functions.dominant, label: '主機能', opacity: 1 },
               { funcId: typeData.functions.auxiliary, label: '補助機能', opacity: 0.8 },
               { funcId: typeData.functions.tertiary, label: '第3機能', opacity: 0.6 },
               { funcId: typeData.functions.inferior, label: '劣等機能', opacity: 0.4 },
-            ].map(({ funcId, label, opacity }) => {
-              const func = cognitiveFunctions[funcId as CognitiveFunctionId]
-              return (
-                <div
-                  key={funcId}
-                  className="p-3 rounded-xl mb-2"
-                  style={{
-                    background: `${typeData.color}08`,
-                    border: `1px solid ${typeData.color}15`,
-                    opacity: 0.4 + opacity * 0.6,
-                  }}
-                >
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-sm font-bold" style={{ color: typeData.color }}>
-                      {funcId}
-                    </span>
-                    <span className="text-xs text-gray-500">{label}</span>
-                  </div>
-                  <div className="text-white text-xs font-medium">{func.name}</div>
-                  <div className="text-gray-500 text-xs mt-1 leading-relaxed">
-                    {func.keywords.slice(0, 3).join(' · ')}
-                  </div>
-                </div>
-              )
-            })}
+            ].map(({ funcId, label, opacity }) => (
+              <CognitiveFunctionCard
+                key={funcId}
+                funcId={funcId as CognitiveFunctionId}
+                label={label}
+                color={typeData.color}
+                opacity={opacity}
+                isShadow={false}
+              />
+            ))}
+
+            {/* Shadow Functions */}
+            <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mt-4 mb-2">
+              シャドー4機能
+            </div>
+            {[
+              { funcId: typeData.functions.opposing, label: '反対人格', opacity: 0.5 },
+              { funcId: typeData.functions.criticalParent, label: '批判的な親', opacity: 0.45 },
+              { funcId: typeData.functions.trickster, label: 'トリックスター', opacity: 0.4 },
+              { funcId: typeData.functions.demon, label: '悪魔', opacity: 0.35 },
+            ].map(({ funcId, label, opacity }) => (
+              <CognitiveFunctionCard
+                key={funcId}
+                funcId={funcId as CognitiveFunctionId}
+                label={label}
+                color="#a78bfa"
+                opacity={opacity}
+                isShadow={true}
+              />
+            ))}
 
             <div className="mt-4 pt-4 border-t border-indigo-900/20">
               <p className="text-gray-500 text-xs leading-relaxed">
@@ -306,11 +341,55 @@ export default function ConsultationPage() {
             className="px-4 py-3 flex items-center justify-between"
             style={{ borderBottom: '1px solid rgba(99,102,241,0.15)' }}
           >
-            <div>
-              <h1 className="text-white font-bold">AI 認知機能メンター</h1>
-              <p className="text-gray-500 text-xs">
-                {typeData.type}の認知機能スタックに基づいたパーソナライズ相談
-              </p>
+            <div className="flex items-center gap-3">
+              <div>
+                <h1 className="text-white font-bold">AI 認知機能メンター</h1>
+                <p className="text-gray-500 text-xs">
+                  {typeData.type}の認知機能スタックに基づいたパーソナライズ相談
+                </p>
+              </div>
+              {/* Mode badge when chat has messages */}
+              {messages.length > 0 && (
+                <div className="relative" ref={dropdownRef}>
+                  <button
+                    onClick={() => setShowModeDropdown(!showModeDropdown)}
+                    className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all hover:opacity-80"
+                    style={{
+                      background: 'rgba(99,102,241,0.15)',
+                      border: '1px solid rgba(99,102,241,0.35)',
+                      color: '#a5b4fc',
+                    }}
+                  >
+                    <span>{currentModeInfo.icon}</span>
+                    <span>{currentModeInfo.title}</span>
+                    <span className="text-gray-500">▼</span>
+                  </button>
+                  {showModeDropdown && (
+                    <div
+                      className="absolute top-full left-0 mt-1 w-56 rounded-xl z-50 overflow-hidden shadow-xl"
+                      style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.25)' }}
+                    >
+                      {MODES.map((m) => (
+                        <button
+                          key={m.id}
+                          onClick={() => { setMode(m.id); setShowModeDropdown(false) }}
+                          className="w-full flex items-center gap-2 px-3 py-2.5 text-left transition-colors hover:bg-indigo-900/20"
+                          style={{
+                            background: mode === m.id ? 'rgba(99,102,241,0.15)' : undefined,
+                          }}
+                        >
+                          <span>{m.icon}</span>
+                          <div>
+                            <div className="text-white text-xs font-medium">{m.title}</div>
+                            <div className="text-gray-500 text-xs leading-tight">{m.description}</div>
+                          </div>
+                          {mode === m.id && <span className="ml-auto text-indigo-400 text-xs">✓</span>}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
             <div className="flex items-center gap-2">
               {messages.length > 0 && (
@@ -335,7 +414,7 @@ export default function ConsultationPage() {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full text-center py-12">
+              <div className="flex flex-col items-center justify-center h-full text-center py-8">
                 <div className="text-5xl mb-4">💭</div>
                 <h3 className="text-xl font-bold text-white mb-2">
                   {user.username}さん、何でも相談してください
@@ -344,6 +423,37 @@ export default function ConsultationPage() {
                   仕事、人間関係、自己成長、日々の悩みなど、
                   {typeData.type}の認知機能スタックの観点からアドバイスします。
                 </p>
+
+                {/* Mode Selector - 2x2 grid */}
+                <div className="w-full max-w-lg mb-6">
+                  <p className="text-gray-500 text-sm mb-3">相談モードを選んでください</p>
+                  <div className="grid grid-cols-2 gap-3">
+                    {MODES.map((m) => (
+                      <button
+                        key={m.id}
+                        onClick={() => setMode(m.id)}
+                        className="p-4 rounded-xl text-left transition-all hover:scale-[1.02]"
+                        style={{
+                          background: mode === m.id ? 'rgba(99,102,241,0.15)' : 'rgba(99,102,241,0.05)',
+                          border: mode === m.id
+                            ? '2px solid rgba(99,102,241,0.7)'
+                            : '2px solid rgba(99,102,241,0.15)',
+                        }}
+                      >
+                        <div className="text-2xl mb-2">{m.icon}</div>
+                        <div
+                          className="text-sm font-semibold mb-1"
+                          style={{ color: mode === m.id ? '#a5b4fc' : '#e2e8f0' }}
+                        >
+                          {m.title}
+                        </div>
+                        <div className="text-gray-500 text-xs leading-snug">{m.description}</div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Suggestion buttons */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg w-full">
                   {[
                     '人間関係で悩んでいることがあります',
