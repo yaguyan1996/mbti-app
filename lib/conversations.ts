@@ -1,5 +1,6 @@
 import fs from 'fs/promises'
 import path from 'path'
+import { Redis } from '@upstash/redis'
 
 export interface StoredMessage {
   role: 'user' | 'assistant'
@@ -18,7 +19,6 @@ function filePath(userId: string) {
 }
 
 function getRedis() {
-  const { Redis } = require('@upstash/redis')
   return new Redis({
     url: process.env.KV_REST_API_URL!,
     token: process.env.KV_REST_API_KEY!,

@@ -2,6 +2,7 @@ import * as bcrypt from 'bcryptjs'
 import { SignJWT, jwtVerify } from 'jose'
 import fs from 'fs/promises'
 import path from 'path'
+import { Redis } from '@upstash/redis'
 
 export interface User {
   id: string
@@ -18,7 +19,6 @@ const JWT_SECRET = new TextEncoder().encode(
 // ---- KV helpers (only used in production with KV_REST_API_URL set) ----
 
 function getRedis() {
-  const { Redis } = require('@upstash/redis')
   return new Redis({
     url: process.env.KV_REST_API_URL!,
     token: process.env.KV_REST_API_KEY!,
