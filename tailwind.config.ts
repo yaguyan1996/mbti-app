@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#0a0a1a',
+        background: '#faf7f0',
         primary: '#6366f1',
         secondary: '#8b5cf6',
         gold: '#f59e0b',
-        card: '#111128',
+        card: '#fff9f0',
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

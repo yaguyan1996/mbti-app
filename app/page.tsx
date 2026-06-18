@@ -8,7 +8,7 @@ export default function HomePage() {
   const { user, loading } = useAuth()
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#faf7f0' }}>
       <Navbar />
 
       {/* Hero Section */}
@@ -40,10 +40,10 @@ export default function HomePage() {
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             <span className="gradient-text">MBTI</span>
             <br />
-            <span className="text-white">自己理解アプリ</span>
+            <span className="text-stone-800">自己理解アプリ</span>
           </h1>
 
-          <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-stone-500 mb-10 max-w-2xl mx-auto leading-relaxed">
             あなたのMBTIタイプを診断し、8つの認知機能の観点から
             深い自己理解と成長をAIと共に探求しましょう。
           </p>
@@ -65,7 +65,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/test"
-                  className="px-8 py-3 rounded-xl text-indigo-300 font-semibold text-lg border border-indigo-500/40 hover:border-indigo-400 hover:bg-indigo-900/20 transition-all"
+                  className="px-8 py-3 rounded-xl text-indigo-600 font-semibold text-lg border border-indigo-400/50 hover:border-indigo-500 hover:bg-indigo-50 transition-all"
                 >
                   診断テストを受ける
                 </Link>
@@ -81,7 +81,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/login"
-                  className="px-8 py-3 rounded-xl text-indigo-300 font-semibold text-lg border border-indigo-500/40 hover:border-indigo-400 hover:bg-indigo-900/20 transition-all"
+                  className="px-8 py-3 rounded-xl text-indigo-600 font-semibold text-lg border border-indigo-400/50 hover:border-indigo-500 hover:bg-indigo-50 transition-all"
                 >
                   ログイン
                 </Link>
@@ -98,7 +98,7 @@ export default function HomePage() {
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="text-3xl font-bold gradient-text">{stat.number}</div>
-                <div className="text-gray-500 text-sm mt-1">{stat.label}</div>
+                <div className="text-stone-500 text-sm mt-1">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -108,10 +108,10 @@ export default function HomePage() {
       {/* Features Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-white mb-4">
+          <h2 className="text-3xl font-bold text-center text-stone-800 mb-4">
             3つの主要機能
           </h2>
-          <p className="text-gray-400 text-center mb-12">
+          <p className="text-stone-500 text-center mb-12">
             自己理解を深めるための包括的なツール
           </p>
           <div className="grid md:grid-cols-3 gap-6">
@@ -141,12 +141,12 @@ export default function HomePage() {
       </section>
 
       {/* Cognitive Functions Preview */}
-      <section className="py-20 px-4" style={{ background: 'rgba(99,102,241,0.03)' }}>
+      <section className="py-20 px-4" style={{ background: 'rgba(99,102,241,0.04)' }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center text-white mb-4">
+          <h2 className="text-3xl font-bold text-center text-stone-800 mb-4">
             認知機能とは？
           </h2>
-          <p className="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
+          <p className="text-stone-500 text-center mb-12 max-w-2xl mx-auto">
             MBTIは4文字だけでなく、8つの認知機能の組み合わせによって人の思考・感情・知覚のパターンを深く理解します
           </p>
 
@@ -175,8 +175,8 @@ export default function HomePage() {
                 >
                   {func.id}
                 </div>
-                <div className="text-white text-sm font-medium">{func.name}</div>
-                <div className="text-gray-500 text-xs mt-1">{func.desc}</div>
+                <div className="text-stone-700 text-sm font-medium">{func.name}</div>
+                <div className="text-stone-500 text-xs mt-1">{func.desc}</div>
               </div>
             ))}
           </div>
@@ -190,10 +190,10 @@ export default function HomePage() {
             className="p-10 rounded-2xl glass"
             style={{ border: '1px solid rgba(99,102,241,0.3)' }}
           >
-            <h2 className="text-3xl font-bold text-white mb-4">
+            <h2 className="text-3xl font-bold text-stone-800 mb-4">
               自分をもっと深く知ろう
             </h2>
-            <p className="text-gray-400 mb-8">
+            <p className="text-stone-500 mb-8">
               認知機能の視点であなたの強みと成長領域を理解し、
               より充実した人生を歩む第一歩を踏み出しましょう。
             </p>
@@ -208,7 +208,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/test"
-                  className="px-8 py-3 rounded-xl text-indigo-300 font-semibold border border-indigo-500/40 hover:border-indigo-400 transition-all"
+                  className="px-8 py-3 rounded-xl text-indigo-600 font-semibold border border-indigo-400/50 hover:border-indigo-500 transition-all"
                 >
                   まず診断してみる
                 </Link>
@@ -228,7 +228,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 text-center text-gray-600 border-t border-indigo-900/20">
+      <footer className="py-8 px-4 text-center text-stone-500 border-t border-stone-200">
         <p>© 2024 MBTI 自己理解アプリ. Powered by Claude AI.</p>
       </footer>
     </div>
@@ -258,8 +258,8 @@ function FeatureCard({
         }}
       >
         <div className="text-4xl mb-4">{icon}</div>
-        <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
-        <p className="text-gray-400 text-sm leading-relaxed">{description}</p>
+        <h3 className="text-xl font-bold text-stone-800 mb-3">{title}</h3>
+        <p className="text-stone-500 text-sm leading-relaxed">{description}</p>
         <div className="mt-4 flex items-center gap-1 text-sm font-medium" style={{ color }}>
           <span>詳しく見る</span>
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

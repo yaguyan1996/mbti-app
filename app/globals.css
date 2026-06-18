@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --background: #0a0a1a;
+  --background: #faf7f0;
   --primary: #6366f1;
   --secondary: #8b5cf6;
   --gold: #f59e0b;
-  --card: #111128;
+  --card: #fff9f0;
 }
 
 * {
@@ -21,7 +21,7 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   background-color: var(--background);
-  color: white;
+  color: #2c1d0e;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif;
 }
 
@@ -32,7 +32,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a1a;
+  background: #faf7f0;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -46,17 +46,17 @@ body {
 
 /* Glass morphism */
 .glass {
-  background: rgba(99, 102, 241, 0.1);
+  background: rgba(255, 249, 240, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(180, 140, 80, 0.2);
 }
 
 .glass-dark {
-  background: rgba(17, 17, 40, 0.8);
+  background: rgba(245, 237, 224, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(180, 140, 80, 0.2);
 }
 
 /* Gradient text */
@@ -167,21 +167,21 @@ body {
 .card {
   background: var(--card);
   border-radius: 1rem;
-  border: 1px solid rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(180, 140, 80, 0.2);
   transition: all 0.3s ease;
 }
 
 .card:hover {
   border-color: rgba(99, 102, 241, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 30px rgba(180, 140, 80, 0.15);
 }
 
 /* Input styles */
 .input-dark {
-  background: rgba(17, 17, 40, 0.8);
+  background: rgba(255, 252, 245, 0.9);
   border: 1px solid rgba(99, 102, 241, 0.3);
-  color: white;
+  color: #2c1d0e;
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
   width: 100%;
@@ -190,7 +190,7 @@ body {
 }
 
 .input-dark::placeholder {
-  color: rgba(255, 255, 255, 0.4);
+  color: rgba(44, 29, 14, 0.4);
 }
 
 .input-dark:focus {

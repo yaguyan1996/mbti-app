@@ -33,12 +33,12 @@ export default function TypeDetailPage({ params }: Props) {
     ?.types.filter((t) => t !== typeKey) || []
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#faf7f0' }}>
       <Navbar />
       <main className="pt-24 pb-16 px-4 max-w-4xl mx-auto">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-          <Link href="/types" className="hover:text-gray-300 transition-colors">
+        <div className="flex items-center gap-2 text-sm text-stone-500 mb-6">
+          <Link href="/types" className="hover:text-stone-700 transition-colors">
             16タイプ
           </Link>
           <span>›</span>
@@ -69,11 +69,11 @@ export default function TypeDetailPage({ params }: Props) {
               </div>
             </div>
             <div>
-              <h1 className="text-4xl font-bold text-white mb-1">{typeData.name}</h1>
-              <p className="text-gray-400 text-lg">{typeData.nickname}</p>
+              <h1 className="text-4xl font-bold text-stone-800 mb-1">{typeData.name}</h1>
+              <p className="text-stone-500 text-lg">{typeData.nickname}</p>
             </div>
           </div>
-          <p className="text-gray-300 text-lg leading-relaxed mt-4">
+          <p className="text-stone-700 text-lg leading-relaxed mt-4">
             {typeData.description}
           </p>
         </div>
@@ -81,16 +81,16 @@ export default function TypeDetailPage({ params }: Props) {
         {/* Long Description */}
         <div
           className="p-6 rounded-2xl mb-8"
-          style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.15)' }}
+          style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.15)' }}
         >
-          <h2 className="text-xl font-bold text-white mb-4">詳細な説明</h2>
-          <p className="text-gray-300 leading-relaxed">{typeData.longDescription}</p>
+          <h2 className="text-xl font-bold text-stone-800 mb-4">詳細な説明</h2>
+          <p className="text-stone-700 leading-relaxed">{typeData.longDescription}</p>
         </div>
 
         {/* Cognitive Functions */}
         <div className="mb-8">
-          <h2 className="text-xl font-bold text-white mb-2">認知機能スタック</h2>
-          <p className="text-gray-400 text-sm mb-4">
+          <h2 className="text-xl font-bold text-stone-800 mb-2">認知機能スタック</h2>
+          <p className="text-stone-500 text-sm mb-4">
             {typeData.type}の思考・感情・判断パターンを形成する4つの主要認知機能
           </p>
           <div className="space-y-4">
@@ -107,7 +107,7 @@ export default function TypeDetailPage({ params }: Props) {
                 >
                   <div className="flex items-start gap-4">
                     <div className="text-center shrink-0">
-                      <div className="text-xs text-gray-500 mb-1">#{order}</div>
+                      <div className="text-xs text-stone-400 mb-1">#{order}</div>
                       <div
                         className="text-3xl font-bold"
                         style={{ color: typeData.color, opacity }}
@@ -117,8 +117,8 @@ export default function TypeDetailPage({ params }: Props) {
                     </div>
                     <div className="flex-1">
                       <div className="flex flex-wrap items-center gap-2 mb-2">
-                        <span className="text-white font-bold">{func.name}</span>
-                        <span className="text-gray-500 text-xs">{label}</span>
+                        <span className="text-stone-800 font-bold">{func.name}</span>
+                        <span className="text-stone-500 text-xs">{label}</span>
                         <span
                           className="text-xs px-2 py-0.5 rounded-full"
                           style={{ background: 'rgba(99,102,241,0.15)', color: '#a78bfa' }}
@@ -126,7 +126,7 @@ export default function TypeDetailPage({ params }: Props) {
                           {func.fullName}
                         </span>
                       </div>
-                      <p className="text-gray-400 text-sm leading-relaxed mb-3">
+                      <p className="text-stone-500 text-sm leading-relaxed mb-3">
                         {func.description}
                       </p>
                       <div className="flex flex-wrap gap-1.5">
@@ -161,7 +161,7 @@ export default function TypeDetailPage({ params }: Props) {
             <h3 className="font-bold text-green-400 mb-4 text-lg">強み</h3>
             <ul className="space-y-2">
               {typeData.strengths.map((s) => (
-                <li key={s} className="flex items-start gap-2 text-gray-300">
+                <li key={s} className="flex items-start gap-2 text-stone-700">
                   <span className="text-green-400 mt-0.5 shrink-0">✓</span>
                   {s}
                 </li>
@@ -175,7 +175,7 @@ export default function TypeDetailPage({ params }: Props) {
             <h3 className="font-bold text-red-400 mb-4 text-lg">弱み・課題</h3>
             <ul className="space-y-2">
               {typeData.weaknesses.map((w) => (
-                <li key={w} className="flex items-start gap-2 text-gray-300">
+                <li key={w} className="flex items-start gap-2 text-stone-700">
                   <span className="text-red-400 mt-0.5 shrink-0">△</span>
                   {w}
                 </li>
@@ -198,7 +198,7 @@ export default function TypeDetailPage({ params }: Props) {
                 style={{ background: 'rgba(245,158,11,0.05)' }}
               >
                 <span className="text-amber-400">→</span>
-                <span className="text-gray-300 text-sm">{g}</span>
+                <span className="text-stone-700 text-sm">{g}</span>
               </div>
             ))}
           </div>
@@ -207,9 +207,9 @@ export default function TypeDetailPage({ params }: Props) {
         {/* Famous Examples */}
         <div
           className="p-6 rounded-2xl mb-8"
-          style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.15)' }}
+          style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.15)' }}
         >
-          <h3 className="font-bold text-white mb-4 text-lg">有名な{typeData.type}の人物</h3>
+          <h3 className="font-bold text-stone-800 mb-4 text-lg">有名な{typeData.type}の人物</h3>
           <div className="flex flex-wrap gap-2">
             {typeData.famousExamples.map((person) => (
               <span
@@ -230,7 +230,7 @@ export default function TypeDetailPage({ params }: Props) {
         {/* Related Types */}
         {groupTypes.length > 0 && (
           <div className="mb-8">
-            <h3 className="font-bold text-white mb-4 text-lg">
+            <h3 className="font-bold text-stone-800 mb-4 text-lg">
               同グループ（{typeData.groupJa}）の他のタイプ
             </h3>
             <div className="flex flex-wrap gap-3">
@@ -259,7 +259,7 @@ export default function TypeDetailPage({ params }: Props) {
         <div className="flex flex-wrap gap-3">
           <Link
             href="/types"
-            className="px-6 py-3 rounded-xl text-gray-300 font-medium border border-gray-700 hover:border-gray-500 transition-all"
+            className="px-6 py-3 rounded-xl text-stone-600 font-medium border border-stone-300 hover:border-stone-400 transition-all"
           >
             ← タイプ一覧に戻る
           </Link>

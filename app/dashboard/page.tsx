@@ -57,16 +57,16 @@ export default function DashboardPage() {
     : []
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#faf7f0' }}>
       <Navbar />
       <main className="pt-24 pb-16 px-4 max-w-6xl mx-auto">
         {/* Welcome */}
         <div className="mb-8 animate-fade-in">
-          <h1 className="text-3xl font-bold text-white">
+          <h1 className="text-3xl font-bold text-stone-800">
             おかえりなさい、{' '}
             <span className="gradient-text">{user.username}</span>さん
           </h1>
-          <p className="text-gray-400 mt-1">あなたの自己理解の旅を続けましょう</p>
+          <p className="text-stone-500 mt-1">あなたの自己理解の旅を続けましょう</p>
         </div>
 
         {typeData ? (
@@ -87,8 +87,8 @@ export default function DashboardPage() {
                   {typeData.type}
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-white">{typeData.name}</div>
-                  <div className="text-gray-400">{typeData.nickname}</div>
+                  <div className="text-2xl font-bold text-stone-800">{typeData.name}</div>
+                  <div className="text-stone-500">{typeData.nickname}</div>
                   <div
                     className="text-sm mt-1 px-3 py-0.5 rounded-full inline-block"
                     style={{ background: `${typeData.color}20`, color: typeData.color }}
@@ -110,7 +110,7 @@ export default function DashboardPage() {
 
             {/* Function Stack */}
             <div className="mb-6">
-              <h2 className="text-xl font-bold text-white mb-4">認知機能スタック</h2>
+              <h2 className="text-xl font-bold text-stone-800 mb-4">認知機能スタック</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {functions.map((funcId, idx) => {
                   const opacities = [1, 0.85, 0.65, 0.45]
@@ -130,8 +130,8 @@ export default function DashboardPage() {
 
             {/* Shadow Function Stack */}
             <div className="mb-6">
-              <h2 className="text-xl font-bold text-white mb-1">シャドー機能スタック</h2>
-              <p className="text-gray-500 text-sm mb-4">無意識に働く影の自己。ストレス時や防衛的な場面で現れる。</p>
+              <h2 className="text-xl font-bold text-stone-800 mb-1">シャドー機能スタック</h2>
+              <p className="text-stone-500 text-sm mb-4">無意識に働く影の自己。ストレス時や防衛的な場面で現れる。</p>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {shadowFunctions.map((funcId, idx) => {
                   const shadowColors = ['#94a3b8', '#78716c', '#a78bfa', '#f43f5e']
@@ -153,9 +153,9 @@ export default function DashboardPage() {
             {/* Description */}
             <div
               className="p-5 rounded-xl mb-6"
-              style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.15)' }}
+              style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.15)' }}
             >
-              <p className="text-gray-300 leading-relaxed">{typeData.description}</p>
+              <p className="text-stone-700 leading-relaxed">{typeData.description}</p>
             </div>
 
             {/* Strengths & Weaknesses */}
@@ -169,7 +169,7 @@ export default function DashboardPage() {
                 </h3>
                 <ul className="space-y-1.5">
                   {typeData.strengths.map((s) => (
-                    <li key={s} className="text-gray-300 text-sm flex items-start gap-2">
+                    <li key={s} className="text-stone-700 text-sm flex items-start gap-2">
                       <span className="text-green-400 mt-0.5">•</span>
                       {s}
                     </li>
@@ -185,7 +185,7 @@ export default function DashboardPage() {
                 </h3>
                 <ul className="space-y-1.5">
                   {typeData.growthAreas.map((g) => (
-                    <li key={g} className="text-gray-300 text-sm flex items-start gap-2">
+                    <li key={g} className="text-stone-700 text-sm flex items-start gap-2">
                       <span className="text-amber-400 mt-0.5">•</span>
                       {g}
                     </li>
@@ -198,12 +198,12 @@ export default function DashboardPage() {
           /* No type yet */
           <div
             className="p-8 rounded-2xl mb-6 animate-slide-up"
-            style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.2)' }}
+            style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}
           >
             <div className="text-center mb-8">
               <div className="text-5xl mb-3">🔍</div>
-              <h2 className="text-2xl font-bold text-white mb-2">MBTIタイプを設定しましょう</h2>
-              <p className="text-gray-400">診断テストを受けるか、すでにタイプを知っている場合は直接選択できます</p>
+              <h2 className="text-2xl font-bold text-stone-800 mb-2">MBTIタイプを設定しましょう</h2>
+              <p className="text-stone-500">診断テストを受けるか、すでにタイプを知っている場合は直接選択できます</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -212,8 +212,8 @@ export default function DashboardPage() {
                 className="p-6 rounded-xl"
                 style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.2)' }}
               >
-                <h3 className="text-white font-bold mb-1">すでにタイプを知っている</h3>
-                <p className="text-gray-500 text-sm mb-4">16タイプから選択してください</p>
+                <h3 className="text-stone-800 font-bold mb-1">すでにタイプを知っている</h3>
+                <p className="text-stone-500 text-sm mb-4">16タイプから選択してください</p>
                 <div className="grid grid-cols-4 gap-2 mb-4">
                   {ALL_TYPES.map((type) => {
                     const t = mbtiTypes[type]
@@ -223,9 +223,9 @@ export default function DashboardPage() {
                         onClick={() => setSelectedType(type)}
                         className="py-2 rounded-lg text-sm font-bold transition-all"
                         style={{
-                          background: selectedType === type ? `${t.color}30` : 'rgba(255,255,255,0.05)',
-                          border: `1px solid ${selectedType === type ? t.color : 'rgba(255,255,255,0.1)'}`,
-                          color: selectedType === type ? t.color : '#9ca3af',
+                          background: selectedType === type ? `${t.color}30` : 'rgba(0,0,0,0.04)',
+                          border: `1px solid ${selectedType === type ? t.color : 'rgba(0,0,0,0.1)'}`,
+                          color: selectedType === type ? t.color : '#78716c',
                         }}
                       >
                         {type}
@@ -234,7 +234,7 @@ export default function DashboardPage() {
                   })}
                 </div>
                 {selectedType && (
-                  <div className="mb-3 text-sm text-gray-300">
+                  <div className="mb-3 text-sm text-stone-700">
                     <span style={{ color: mbtiTypes[selectedType].color }} className="font-bold">{selectedType}</span>
                     {' '}— {mbtiTypes[selectedType].name}
                   </div>
@@ -254,8 +254,8 @@ export default function DashboardPage() {
                 className="p-6 rounded-xl flex flex-col"
                 style={{ background: 'rgba(16,185,129,0.05)', border: '1px solid rgba(16,185,129,0.2)' }}
               >
-                <h3 className="text-white font-bold mb-1">診断テストを受ける</h3>
-                <p className="text-gray-500 text-sm mb-4">20問の質問に答えてタイプを診断します</p>
+                <h3 className="text-stone-800 font-bold mb-1">診断テストを受ける</h3>
+                <p className="text-stone-500 text-sm mb-4">20問の質問に答えてタイプを診断します</p>
                 <div className="flex-1 flex items-center justify-center py-4">
                   <div className="text-5xl">📋</div>
                 </div>
@@ -272,7 +272,7 @@ export default function DashboardPage() {
         )}
 
         {/* Quick Actions */}
-        <h2 className="text-xl font-bold text-white mb-4">クイックアクション</h2>
+        <h2 className="text-xl font-bold text-stone-800 mb-4">クイックアクション</h2>
         <div className="grid sm:grid-cols-3 gap-4">
           <QuickActionCard
             icon="📋"
@@ -314,9 +314,9 @@ function QuickActionCard({
         style={{ background: `${color}08`, border: `1px solid ${color}20` }}
       >
         <div className="text-3xl mb-3">{icon}</div>
-        <div className="font-bold text-white mb-1">{title}</div>
-        <div className="text-gray-500 text-sm">{description}</div>
-        <div className="text-xs text-gray-600 mt-2">先に診断テストを受けてください</div>
+        <div className="font-bold text-stone-800 mb-1">{title}</div>
+        <div className="text-stone-500 text-sm">{description}</div>
+        <div className="text-xs text-stone-400 mt-2">先に診断テストを受けてください</div>
       </div>
     )
   }
@@ -327,8 +327,8 @@ function QuickActionCard({
         style={{ background: `${color}08`, border: `1px solid ${color}20` }}
       >
         <div className="text-3xl mb-3">{icon}</div>
-        <div className="font-bold text-white mb-1">{title}</div>
-        <div className="text-gray-400 text-sm">{description}</div>
+        <div className="font-bold text-stone-800 mb-1">{title}</div>
+        <div className="text-stone-500 text-sm">{description}</div>
         <div className="text-xs mt-2 font-medium" style={{ color }}>
           開く →
         </div>
@@ -339,12 +339,12 @@ function QuickActionCard({
 
 function LoadingScreen() {
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#faf7f0' }}>
       <div className="text-center">
         <div
           className="w-12 h-12 rounded-full border-4 border-indigo-500/30 border-t-indigo-500 animate-spin mx-auto mb-4"
         />
-        <p className="text-gray-400">読み込み中...</p>
+        <p className="text-stone-500">読み込み中...</p>
       </div>
     </div>
   )

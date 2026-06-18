@@ -41,18 +41,18 @@ export default function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#faf7f0' }}>
       <Navbar />
       <div className="max-w-2xl mx-auto px-4 pt-28 pb-16">
         <div className="text-center mb-10 animate-fade-in">
-          <h1 className="text-3xl font-bold text-white mb-3">お問い合わせ</h1>
-          <p className="text-gray-400">ご意見・ご要望・バグ報告などをお気軽にどうぞ</p>
+          <h1 className="text-3xl font-bold text-stone-800 mb-3">お問い合わせ</h1>
+          <p className="text-stone-500">ご意見・ご要望・バグ報告などをお気軽にどうぞ</p>
         </div>
 
         {success ? (
           <div
             className="animate-slide-up rounded-2xl p-10 text-center"
-            style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.3)' }}
+            style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.3)' }}
           >
             <div
               className="w-16 h-16 rounded-full flex items-center justify-center text-3xl mx-auto mb-5"
@@ -60,19 +60,19 @@ export default function ContactPage() {
             >
               ✓
             </div>
-            <h2 className="text-2xl font-bold text-white mb-3">送信完了しました</h2>
-            <p className="text-gray-400 mb-2">お問い合わせありがとうございます。</p>
-            <p className="text-gray-400">内容を確認の上、対応いたします。</p>
+            <h2 className="text-2xl font-bold text-stone-800 mb-3">送信完了しました</h2>
+            <p className="text-stone-500 mb-2">お問い合わせありがとうございます。</p>
+            <p className="text-stone-500">内容を確認の上、対応いたします。</p>
           </div>
         ) : (
           <form
             onSubmit={handleSubmit}
             className="animate-slide-up rounded-2xl p-8 space-y-6"
-            style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.2)' }}
+            style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}
           >
             {/* Category */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-stone-600 mb-2">
                 カテゴリ
               </label>
               <select
@@ -82,7 +82,7 @@ export default function ContactPage() {
                 style={{ appearance: 'none', cursor: 'pointer' }}
               >
                 {CATEGORIES.map((c) => (
-                  <option key={c} value={c} style={{ background: '#111128', color: 'white' }}>
+                  <option key={c} value={c} style={{ background: '#fff9f0', color: '#2c1d0e' }}>
                     {c}
                   </option>
                 ))}
@@ -91,9 +91,9 @@ export default function ContactPage() {
 
             {/* Username */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-stone-600 mb-2">
                 お名前・ユーザー名
-                <span className="text-gray-500 font-normal ml-2">（任意）</span>
+                <span className="text-stone-400 font-normal ml-2">（任意）</span>
               </label>
               <input
                 type="text"
@@ -106,7 +106,7 @@ export default function ContactPage() {
 
             {/* Message */}
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">
+              <label className="block text-sm font-medium text-stone-600 mb-2">
                 メッセージ
                 <span className="text-indigo-400 ml-1">*</span>
               </label>

@@ -25,15 +25,15 @@ export default function TypesPage() {
   ]
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#faf7f0' }}>
       <Navbar />
       <main className="pt-24 pb-16 px-4 max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-10 animate-fade-in">
-          <h1 className="text-4xl font-bold text-white mb-3">
+          <h1 className="text-4xl font-bold text-stone-800 mb-3">
             16の<span className="gradient-text">MBTIタイプ</span>
           </h1>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-stone-500 max-w-2xl mx-auto">
             各タイプの認知機能スタック、特徴、強みと弱みを詳しく解説します
           </p>
         </div>
@@ -55,7 +55,7 @@ export default function TypesPage() {
                   : {
                       background: 'transparent',
                       border: '1px solid rgba(99,102,241,0.2)',
-                      color: '#9ca3af',
+                      color: '#78716c',
                     }
               }
             >
@@ -101,8 +101,8 @@ export default function TypesPage() {
                     </div>
                   </div>
 
-                  <div className="text-white font-bold mb-1">{type.name}</div>
-                  <div className="text-gray-500 text-xs mb-3">{type.nickname}</div>
+                  <div className="text-stone-800 font-bold mb-1">{type.name}</div>
+                  <div className="text-stone-500 text-xs mb-3">{type.nickname}</div>
 
                   {/* Dominant function badge */}
                   <div
@@ -113,7 +113,7 @@ export default function TypesPage() {
                     <span>{dominantFunc.name}</span>
                   </div>
 
-                  <p className="text-gray-400 text-xs leading-relaxed line-clamp-3">
+                  <p className="text-stone-500 text-xs leading-relaxed line-clamp-3">
                     {type.description}
                   </p>
 

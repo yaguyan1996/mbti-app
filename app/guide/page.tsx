@@ -54,18 +54,18 @@ const FAQS = [
 
 export default function GuidePage() {
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen" style={{ backgroundColor: '#faf7f0' }}>
       <Navbar />
       <div className="max-w-3xl mx-auto px-4 pt-28 pb-16">
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
-          <h1 className="text-3xl font-bold text-white mb-3">使い方ガイド</h1>
-          <p className="text-gray-400">MBTI 心理機能アプリの使い方をご説明します</p>
+          <h1 className="text-3xl font-bold text-stone-800 mb-3">使い方ガイド</h1>
+          <p className="text-stone-500">MBTI 心理機能アプリの使い方をご説明します</p>
         </div>
 
         {/* Section 1: Steps */}
         <section className="mb-12 animate-slide-up">
-          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-stone-800 mb-6 flex items-center gap-2">
             <span
               className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-white"
               style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
@@ -79,7 +79,7 @@ export default function GuidePage() {
               <div
                 key={step.num}
                 className="flex gap-5 p-6 rounded-2xl"
-                style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.2)' }}
+                style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}
               >
                 <div
                   className="inline-flex w-10 h-10 rounded-full items-center justify-center text-white font-bold text-lg flex-shrink-0"
@@ -88,8 +88,8 @@ export default function GuidePage() {
                   {step.num}
                 </div>
                 <div className="flex-1">
-                  <h3 className="text-white font-semibold mb-1">{step.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-3">{step.desc}</p>
+                  <h3 className="text-stone-800 font-semibold mb-1">{step.title}</h3>
+                  <p className="text-stone-500 text-sm leading-relaxed mb-3">{step.desc}</p>
                   <Link
                     href={step.link.href}
                     className="text-indigo-400 text-sm font-medium hover:text-indigo-300 transition-colors"
@@ -104,7 +104,7 @@ export default function GuidePage() {
 
         {/* Section 2: AI tips */}
         <section className="mb-12">
-          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-stone-800 mb-6 flex items-center gap-2">
             <span
               className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-white"
               style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
@@ -115,13 +115,13 @@ export default function GuidePage() {
           </h2>
           <div
             className="rounded-2xl p-6"
-            style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.2)' }}
+            style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}
           >
             <ul className="space-y-4">
               {TIPS.map((tip, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="text-xl flex-shrink-0">{tip.icon}</span>
-                  <span className="text-gray-300 text-sm leading-relaxed">{tip.text}</span>
+                  <span className="text-stone-700 text-sm leading-relaxed">{tip.text}</span>
                 </li>
               ))}
             </ul>
@@ -130,7 +130,7 @@ export default function GuidePage() {
 
         {/* Section 3: FAQ */}
         <section>
-          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
+          <h2 className="text-xl font-bold text-stone-800 mb-6 flex items-center gap-2">
             <span
               className="w-6 h-6 rounded-md flex items-center justify-center text-xs font-bold text-white"
               style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
@@ -144,10 +144,10 @@ export default function GuidePage() {
               <div
                 key={i}
                 className="rounded-2xl p-6"
-                style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.2)' }}
+                style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}
               >
-                <p className="text-white font-semibold mb-2">Q: {faq.q}</p>
-                <p className="text-gray-400 text-sm leading-relaxed">A: {faq.a}</p>
+                <p className="text-stone-800 font-semibold mb-2">Q: {faq.q}</p>
+                <p className="text-stone-500 text-sm leading-relaxed">A: {faq.a}</p>
               </div>
             ))}
           </div>
@@ -155,7 +155,7 @@ export default function GuidePage() {
 
         {/* Footer CTA */}
         <div className="mt-12 text-center">
-          <p className="text-gray-500 text-sm mb-4">まだ登録していない方はこちら</p>
+          <p className="text-stone-500 text-sm mb-4">まだ登録していない方はこちら</p>
           <Link
             href="/register"
             className="inline-block px-8 py-3 rounded-xl font-semibold text-white transition-all hover:opacity-90"

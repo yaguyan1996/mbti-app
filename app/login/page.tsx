@@ -42,7 +42,7 @@ export default function LoginPage() {
   return (
     <div
       className="min-h-screen flex items-center justify-center px-4"
-      style={{ backgroundColor: '#0a0a1a' }}
+      style={{ backgroundColor: '#faf7f0' }}
     >
       {/* Background orbs */}
       <div
@@ -64,7 +64,7 @@ export default function LoginPage() {
             >
               心
             </div>
-            <span className="text-white font-bold text-lg">MBTI 心理機能</span>
+            <span className="text-stone-800 font-bold text-lg">MBTI 心理機能</span>
           </Link>
         </div>
 
@@ -72,18 +72,18 @@ export default function LoginPage() {
         <div
           className="p-8 rounded-2xl"
           style={{
-            background: '#111128',
+            background: '#fff9f0',
             border: '1px solid rgba(99,102,241,0.2)',
           }}
         >
-          <h1 className="text-2xl font-bold text-white mb-2">ログイン</h1>
-          <p className="text-gray-400 text-sm mb-6">
+          <h1 className="text-2xl font-bold text-stone-800 mb-2">ログイン</h1>
+          <p className="text-stone-500 text-sm mb-6">
             アカウントにサインインしてください
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">
+              <label className="block text-sm font-medium text-stone-600 mb-1.5">
                 ユーザー名
               </label>
               <input
@@ -98,7 +98,7 @@ export default function LoginPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-1.5">
+              <label className="block text-sm font-medium text-stone-600 mb-1.5">
                 パスワード
               </label>
               <input
@@ -141,7 +141,7 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-gray-400">
+          <div className="mt-6 text-center text-sm text-stone-500">
             アカウントをお持ちでないですか？{' '}
             <Link href="/register" className="text-indigo-400 hover:text-indigo-300 font-medium">
               新規登録
@@ -150,7 +150,7 @@ export default function LoginPage() {
         </div>
 
         <div className="mt-4 text-center">
-          <Link href="/" className="text-gray-500 hover:text-gray-400 text-sm">
+          <Link href="/" className="text-stone-500 hover:text-stone-600 text-sm">
             ← トップページに戻る
           </Link>
         </div>

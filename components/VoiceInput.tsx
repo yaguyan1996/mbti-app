@@ -102,7 +102,7 @@ export default function VoiceInput({ onTranscript, disabled = false }: VoiceInpu
     return (
       <button
         disabled
-        className="p-2 rounded-lg text-gray-600 cursor-not-allowed"
+        className="p-2 rounded-lg text-stone-400 cursor-not-allowed"
         title="音声入力はこのブラウザでは利用できません"
       >
         <MicIcon />
@@ -135,7 +135,7 @@ export default function VoiceInput({ onTranscript, disabled = false }: VoiceInpu
       </button>
       {status && (
         <span
-          className="text-xs text-gray-400 whitespace-nowrap max-w-[120px] truncate"
+          className="text-xs text-stone-500 whitespace-nowrap max-w-[120px] truncate"
           title={status}
         >
           {status}

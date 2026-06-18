@@ -106,18 +106,18 @@ export default function ConsultationPage() {
 
   if (!user.mbtiType) {
     return (
-      <div className="min-h-screen" style={{ backgroundColor: '#0a0a1a' }}>
+      <div className="min-h-screen" style={{ backgroundColor: '#faf7f0' }}>
         <Navbar />
         <main className="pt-24 pb-16 px-4 flex items-center justify-center min-h-screen">
           <div
             className="p-10 rounded-2xl text-center max-w-md animate-fade-in"
-            style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.2)' }}
+            style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}
           >
             <div className="text-6xl mb-4">🔍</div>
-            <h2 className="text-2xl font-bold text-white mb-3">
+            <h2 className="text-2xl font-bold text-stone-800 mb-3">
               先に診断テストを受けてください
             </h2>
-            <p className="text-gray-400 mb-6">
+            <p className="text-stone-500 mb-6">
               AI相談では、あなたのMBTIタイプと認知機能スタックに基づいたパーソナライズされたアドバイスを提供します。まずは診断テストを受けてください。
             </p>
             <Link
@@ -248,7 +248,7 @@ export default function ConsultationPage() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#faf7f0' }}>
       <Navbar />
       <div className="flex flex-1 pt-16" style={{ height: 'calc(100vh - 0px)' }}>
         {/* Sidebar - Function Stack */}
@@ -257,13 +257,13 @@ export default function ConsultationPage() {
             showFunctions ? 'translate-x-0' : 'translate-x-full'
           } md:relative md:translate-x-0 md:flex md:flex-col`}
           style={{
-            background: '#0d0d22',
+            background: '#faf7f0',
             borderLeft: '1px solid rgba(99,102,241,0.15)',
             width: showFunctions ? '280px' : undefined,
           }}
         >
           <div className="p-4 overflow-y-auto h-full">
-            <h3 className="text-sm font-bold text-gray-300 mb-4 uppercase tracking-wider">
+            <h3 className="text-sm font-bold text-stone-600 mb-4 uppercase tracking-wider">
               あなたの認知機能スタック
             </h3>
 
@@ -280,14 +280,14 @@ export default function ConsultationPage() {
                   {typeData.type}
                 </span>
                 <div>
-                  <div className="text-white text-sm font-medium">{typeData.name}</div>
-                  <div className="text-gray-500 text-xs">{typeData.groupJa}</div>
+                  <div className="text-stone-800 text-sm font-medium">{typeData.name}</div>
+                  <div className="text-stone-500 text-xs">{typeData.groupJa}</div>
                 </div>
               </div>
             </div>
 
             {/* Main Functions */}
-            <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">
+            <div className="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">
               メイン4機能
             </div>
             {[
@@ -307,7 +307,7 @@ export default function ConsultationPage() {
             ))}
 
             {/* Shadow Functions */}
-            <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mt-4 mb-2">
+            <div className="text-xs font-semibold text-stone-500 uppercase tracking-wider mt-4 mb-2">
               シャドー4機能
             </div>
             {[
@@ -326,8 +326,8 @@ export default function ConsultationPage() {
               />
             ))}
 
-            <div className="mt-4 pt-4 border-t border-indigo-900/20">
-              <p className="text-gray-500 text-xs leading-relaxed">
+            <div className="mt-4 pt-4 border-t border-stone-200">
+              <p className="text-stone-500 text-xs leading-relaxed">
                 AIはこれらの認知機能の視点から、あなたへのアドバイスをカスタマイズします。
               </p>
             </div>
@@ -343,8 +343,8 @@ export default function ConsultationPage() {
           >
             <div className="flex items-center gap-3">
               <div>
-                <h1 className="text-white font-bold">AI 認知機能メンター</h1>
-                <p className="text-gray-500 text-xs">
+                <h1 className="text-stone-800 font-bold">AI 認知機能メンター</h1>
+                <p className="text-stone-500 text-xs">
                   {typeData.type}の認知機能スタックに基づいたパーソナライズ相談
                 </p>
               </div>
@@ -362,26 +362,26 @@ export default function ConsultationPage() {
                   >
                     <span>{currentModeInfo.icon}</span>
                     <span>{currentModeInfo.title}</span>
-                    <span className="text-gray-500">▼</span>
+                    <span className="text-stone-400">▼</span>
                   </button>
                   {showModeDropdown && (
                     <div
                       className="absolute top-full left-0 mt-1 w-56 rounded-xl z-50 overflow-hidden shadow-xl"
-                      style={{ background: '#111128', border: '1px solid rgba(99,102,241,0.25)' }}
+                      style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.25)' }}
                     >
                       {MODES.map((m) => (
                         <button
                           key={m.id}
                           onClick={() => { setMode(m.id); setShowModeDropdown(false) }}
-                          className="w-full flex items-center gap-2 px-3 py-2.5 text-left transition-colors hover:bg-indigo-900/20"
+                          className="w-full flex items-center gap-2 px-3 py-2.5 text-left transition-colors hover:bg-indigo-50"
                           style={{
                             background: mode === m.id ? 'rgba(99,102,241,0.15)' : undefined,
                           }}
                         >
                           <span>{m.icon}</span>
                           <div>
-                            <div className="text-white text-xs font-medium">{m.title}</div>
-                            <div className="text-gray-500 text-xs leading-tight">{m.description}</div>
+                            <div className="text-stone-800 text-xs font-medium">{m.title}</div>
+                            <div className="text-stone-500 text-xs leading-tight">{m.description}</div>
                           </div>
                           {mode === m.id && <span className="ml-auto text-indigo-400 text-xs">✓</span>}
                         </button>
@@ -395,14 +395,14 @@ export default function ConsultationPage() {
               {messages.length > 0 && (
                 <button
                   onClick={clearChat}
-                  className="text-gray-500 hover:text-gray-300 text-xs px-3 py-1.5 rounded-lg border border-gray-700 hover:border-gray-600 transition-all"
+                  className="text-stone-500 hover:text-stone-700 text-xs px-3 py-1.5 rounded-lg border border-stone-300 hover:border-stone-400 transition-all"
                 >
                   会話をクリア
                 </button>
               )}
               <button
                 onClick={() => setShowFunctions(!showFunctions)}
-                className="md:hidden text-gray-400 hover:text-white p-2"
+                className="md:hidden text-stone-500 hover:text-stone-800 p-2"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -416,17 +416,17 @@ export default function ConsultationPage() {
             {messages.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center py-8">
                 <div className="text-5xl mb-4">💭</div>
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-xl font-bold text-stone-800 mb-2">
                   {user.username}さん、何でも相談してください
                 </h3>
-                <p className="text-gray-400 max-w-md leading-relaxed mb-6">
+                <p className="text-stone-500 max-w-md leading-relaxed mb-6">
                   仕事、人間関係、自己成長、日々の悩みなど、
                   {typeData.type}の認知機能スタックの観点からアドバイスします。
                 </p>
 
                 {/* Mode Selector - 2x2 grid */}
                 <div className="w-full max-w-lg mb-6">
-                  <p className="text-gray-500 text-sm mb-3">相談モードを選んでください</p>
+                  <p className="text-stone-500 text-sm mb-3">相談モードを選んでください</p>
                   <div className="grid grid-cols-2 gap-3">
                     {MODES.map((m) => (
                       <button
@@ -443,11 +443,11 @@ export default function ConsultationPage() {
                         <div className="text-2xl mb-2">{m.icon}</div>
                         <div
                           className="text-sm font-semibold mb-1"
-                          style={{ color: mode === m.id ? '#a5b4fc' : '#e2e8f0' }}
+                          style={{ color: mode === m.id ? '#6366f1' : '#44403c' }}
                         >
                           {m.title}
                         </div>
-                        <div className="text-gray-500 text-xs leading-snug">{m.description}</div>
+                        <div className="text-stone-500 text-xs leading-snug">{m.description}</div>
                       </button>
                     ))}
                   </div>
@@ -464,7 +464,7 @@ export default function ConsultationPage() {
                     <button
                       key={suggestion}
                       onClick={() => setInput(suggestion)}
-                      className="p-3 rounded-xl text-left text-sm text-gray-400 hover:text-white transition-all"
+                      className="p-3 rounded-xl text-left text-sm text-stone-500 hover:text-stone-800 transition-all"
                       style={{
                         background: 'rgba(99,102,241,0.08)',
                         border: '1px solid rgba(99,102,241,0.2)',
@@ -492,7 +492,7 @@ export default function ConsultationPage() {
                         >
                           AI
                         </div>
-                        <span className="text-gray-500 text-xs">
+                        <span className="text-stone-400 text-xs">
                           {msg.timestamp.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}
                         </span>
                       </div>
@@ -501,13 +501,13 @@ export default function ConsultationPage() {
                       className={`px-4 py-3 rounded-2xl ${
                         msg.role === 'user'
                           ? 'rounded-tr-sm text-white'
-                          : 'rounded-tl-sm text-gray-200'
+                          : 'rounded-tl-sm text-stone-700'
                       } ${msg.content === '' && isStreaming && idx === messages.length - 1 ? 'streaming-cursor' : ''}`}
                       style={
                         msg.role === 'user'
                           ? { background: 'linear-gradient(135deg, #4f46e5, #7c3aed)' }
                           : {
-                              background: '#111128',
+                              background: '#fff9f0',
                               border: '1px solid rgba(99,102,241,0.15)',
                             }
                       }
@@ -535,7 +535,7 @@ export default function ConsultationPage() {
                     </div>
                     {msg.role === 'user' && (
                       <div className="flex justify-end mt-1">
-                        <span className="text-gray-500 text-xs">
+                        <span className="text-stone-400 text-xs">
                           {msg.timestamp.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' })}
                         </span>
                       </div>
@@ -550,12 +550,12 @@ export default function ConsultationPage() {
           {/* Input Area */}
           <div
             className="p-4"
-            style={{ borderTop: '1px solid rgba(99,102,241,0.15)', background: '#0a0a1a' }}
+            style={{ borderTop: '1px solid rgba(99,102,241,0.15)', background: '#faf7f0' }}
           >
             <div
               className="flex items-end gap-2 p-3 rounded-2xl"
               style={{
-                background: '#111128',
+                background: '#fff9f0',
                 border: '1px solid rgba(99,102,241,0.25)',
               }}
             >
@@ -565,7 +565,7 @@ export default function ConsultationPage() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="メッセージを入力...（Shift+Enterまたは⌘+Enterで送信）"
-                className="flex-1 bg-transparent text-white placeholder-gray-500 text-sm resize-none outline-none"
+                className="flex-1 bg-transparent text-stone-800 placeholder-stone-400 text-sm resize-none outline-none"
                 style={{ maxHeight: '120px', minHeight: '40px' }}
                 rows={1}
                 disabled={isStreaming}
@@ -589,7 +589,7 @@ export default function ConsultationPage() {
                 </button>
               </div>
             </div>
-            <p className="text-center text-gray-600 text-xs mt-2">
+            <p className="text-center text-stone-400 text-xs mt-2">
               Claude AIによるMBTI認知機能分析 · {typeData.type} スタック: {typeData.functions.dominant}→{typeData.functions.auxiliary}→{typeData.functions.tertiary}→{typeData.functions.inferior}
             </p>
           </div>
@@ -601,10 +601,10 @@ export default function ConsultationPage() {
 
 function LoadingScreen() {
   return (
-    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0a0a1a' }}>
+    <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#faf7f0' }}>
       <div className="text-center">
         <div className="w-12 h-12 rounded-full border-4 border-indigo-500/30 border-t-indigo-500 animate-spin mx-auto mb-4" />
-        <p className="text-gray-400">読み込み中...</p>
+        <p className="text-stone-500">読み込み中...</p>
       </div>
     </div>
   )

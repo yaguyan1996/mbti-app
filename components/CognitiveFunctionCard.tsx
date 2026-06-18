@@ -30,11 +30,11 @@ export default function CognitiveFunctionCard({ funcId, label, color, opacity = 
             <span className="text-sm font-bold" style={{ color }}>
               {funcId}
             </span>
-            <span className="text-xs text-gray-500">{label}</span>
+            <span className="text-xs text-stone-500">{label}</span>
           </div>
         </div>
-        <div className="text-white text-xs font-medium">{func.name}</div>
-        <div className="text-gray-500 text-xs mt-1 leading-relaxed">
+        <div className="text-stone-800 text-xs font-medium">{func.name}</div>
+        <div className="text-stone-500 text-xs mt-1 leading-relaxed">
           {func.keywords.slice(0, 3).join(' · ')}
         </div>
         <button
@@ -50,11 +50,11 @@ export default function CognitiveFunctionCard({ funcId, label, color, opacity = 
           className="px-3 pb-3"
           style={{ background: `${color}05`, borderTop: `1px solid ${color}10` }}
         >
-          <p className="text-gray-400 text-xs leading-relaxed mt-2">
+          <p className="text-stone-600 text-xs leading-relaxed mt-2">
             {func.description}
           </p>
           {isShadow && func.shadow && (
-            <p className="text-gray-500 text-xs leading-relaxed mt-2 italic">
+            <p className="text-stone-500 text-xs leading-relaxed mt-2 italic">
               {func.shadow}
             </p>
           )}
