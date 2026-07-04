@@ -19,7 +19,8 @@ export default function AgentFuncPage() {
   const { user, loading } = useAuth()
   const router = useRouter()
   const params = useParams()
-  const funcIdRaw = (params.func as string).toUpperCase() as CognitiveFunctionId
+  const raw = params.func as string
+  const funcIdRaw = (raw.charAt(0).toUpperCase() + raw.slice(1).toLowerCase()) as CognitiveFunctionId
 
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
