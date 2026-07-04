@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: '認知機能 自己理解アプリ',
+  title: 'SELF TYPE',
   description: 'ユング心理学の認知機能理論で深める自己理解 - 16タイプ診断とAI相談',
 }
 

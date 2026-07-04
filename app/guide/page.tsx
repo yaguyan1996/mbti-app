@@ -60,7 +60,7 @@ export default function GuidePage() {
         {/* Header */}
         <div className="text-center mb-12 animate-fade-in">
           <h1 className="text-3xl font-bold text-stone-800 mb-3">使い方ガイド</h1>
-          <p className="text-stone-500">認知機能アプリの使い方をご説明します</p>
+          <p className="text-stone-500">SELF TYPEの使い方をご説明します</p>
         </div>
 
         {/* Section 1: Steps */}

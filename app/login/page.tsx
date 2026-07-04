@@ -64,7 +64,7 @@ export default function LoginPage() {
             >
               心
             </div>
-            <span className="text-stone-800 font-bold text-lg">認知機能アプリ</span>
+            <span className="text-stone-800 font-bold text-lg">SELF TYPE</span>
           </Link>
         </div>
 

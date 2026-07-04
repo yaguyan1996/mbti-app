@@ -229,7 +229,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="py-8 px-4 text-center text-stone-500 border-t border-stone-200">
-        <p>© 2024 認知機能 自己理解アプリ. Powered by Claude AI.</p>
+        <p>© 2024 SELF TYPE. Powered by Claude AI.</p>
       </footer>
     </div>
   )

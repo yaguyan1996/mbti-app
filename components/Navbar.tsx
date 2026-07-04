@@ -24,7 +24,7 @@ export default function Navbar() {
               心
             </div>
             <span className="font-bold text-stone-800 group-hover:text-indigo-600 transition-colors">
-              認知機能アプリ
+              SELF TYPE
             </span>
           </Link>
 
