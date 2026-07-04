@@ -183,6 +183,48 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* INNER NATURE Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-5xl mx-auto">
+          <div className="rounded-3xl overflow-hidden"
+            style={{ background: 'linear-gradient(135deg, #1B4332 0%, #2C5F2E 60%, #3a7d44 100%)' }}>
+            <div className="p-10 md:p-16">
+              <div className="inline-block text-xs px-3 py-1 rounded-full mb-6 font-medium tracking-widest"
+                style={{ background: 'rgba(255,255,255,0.15)', color: '#a7f3d0' }}>
+                INNER NATURE × SELF TYPE
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 leading-snug">
+                弱さを知った日から、<br />本当の自分が始まる。
+              </h2>
+              <p className="text-green-100 mb-8 leading-relaxed max-w-2xl" style={{ opacity: 0.85 }}>
+                SELF TYPEは、淡路島の高級ウェルネスリトリート「INNER NATURE」のデジタルパートナーです。
+                日常の中で認知機能を理解し、自己理解を深め続ける。
+                その積み重ねが、リトリートでの深い変容体験へとつながります。
+              </p>
+              <div className="grid md:grid-cols-3 gap-4 mb-10">
+                {[
+                  { icon: '📱', phase: '日常（アプリ）', desc: 'タイプ診断・エージェントとの相談・認知機能の理解' },
+                  { icon: '🌿', phase: '非日常（リトリート）', desc: '淡路島の自然の中で、深い自己統合と変容体験' },
+                  { icon: '✨', phase: '定着（アプリ）', desc: '気づきを日常に持ち帰り、エージェントと継続ケア' },
+                ].map((item) => (
+                  <div key={item.phase} className="rounded-xl p-5"
+                    style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                    <div className="text-2xl mb-2">{item.icon}</div>
+                    <div className="text-white font-semibold text-sm mb-1">{item.phase}</div>
+                    <div className="text-green-200 text-xs leading-relaxed" style={{ opacity: 0.8 }}>{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="border-t border-white/10 pt-8">
+                <p className="text-green-100 text-sm italic" style={{ opacity: 0.7 }}>
+                  「スキルではなく、自分を知る体験を。答えではなく、弱さと向き合う時間を。」— INNER NATURE
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
