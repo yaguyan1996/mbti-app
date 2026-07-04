@@ -109,12 +109,19 @@ export default function HomePage() {
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center text-stone-800 mb-4">
-            3つの主要機能
+            4つの主要機能
           </h2>
           <p className="text-stone-500 text-center mb-12">
             自己理解を深めるための包括的なツール
           </p>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <FeatureCard
+              icon="💡"
+              title="コンセプト"
+              description="なぜ認知機能で自己理解なのか。SELF TYPEの哲学と、8つの認知機能がもたらす深い自己理解の世界を知る。"
+              href="/concept"
+              color="#10b981"
+            />
             <FeatureCard
               icon="🧬"
               title="タイプ診断"
