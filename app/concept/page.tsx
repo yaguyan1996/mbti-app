@@ -71,7 +71,9 @@ export default function ConceptPage() {
             </span>
           </h1>
           <p className="text-stone-500 text-lg leading-relaxed max-w-2xl mx-auto">
-            なぜ自分はこう感じるのか。なぜあの人とぶつかるのか。なぜ同じ失敗を繰り返すのか。<br />
+            なぜ自分はこう感じるのか。なぜあの人とぶつかるのか。なぜ同じ失敗を繰り返すのか。
+          </p>
+          <p className="text-stone-500 text-lg leading-relaxed max-w-2xl mx-auto mt-3">
             SELF TYPEは、ユング心理学の認知機能理論をベースに、その「なぜ」に答えます。
           </p>
         </div>
