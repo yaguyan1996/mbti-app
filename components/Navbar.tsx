@@ -33,6 +33,7 @@ export default function Navbar() {
             <NavLink href="/">ホーム</NavLink>
             <NavLink href="/types">16タイプ</NavLink>
             <NavLink href="/test">診断テスト</NavLink>
+            <NavLink href="/concept">コンセプト</NavLink>
             <NavLink href="/guide">使い方</NavLink>
             {user && <NavLink href="/consultation">AI相談</NavLink>}
             {user && <NavLink href="/agent">機能エージェント</NavLink>}
@@ -109,6 +110,7 @@ export default function Navbar() {
             <MobileNavLink href="/" onClick={() => setMenuOpen(false)}>ホーム</MobileNavLink>
             <MobileNavLink href="/types" onClick={() => setMenuOpen(false)}>16タイプ</MobileNavLink>
             <MobileNavLink href="/test" onClick={() => setMenuOpen(false)}>診断テスト</MobileNavLink>
+            <MobileNavLink href="/concept" onClick={() => setMenuOpen(false)}>コンセプト</MobileNavLink>
             <MobileNavLink href="/guide" onClick={() => setMenuOpen(false)}>使い方</MobileNavLink>
             {user && (
               <>

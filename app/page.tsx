@@ -215,10 +215,15 @@ export default function HomePage() {
                   </div>
                 ))}
               </div>
-              <div className="border-t border-white/10 pt-8">
+              <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <p className="text-green-100 text-sm italic" style={{ opacity: 0.7 }}>
                   「スキルではなく、自分を知る体験を。答えではなく、弱さと向き合う時間を。」— INNER NATURE
                 </p>
+                <Link href="/concept"
+                  className="shrink-0 px-5 py-2 rounded-lg text-sm font-semibold transition-all hover:bg-white/20"
+                  style={{ background: 'rgba(255,255,255,0.12)', color: 'white', border: '1px solid rgba(255,255,255,0.25)' }}>
+                  コンセプトを読む →
+                </Link>
               </div>
             </div>
           </div>
