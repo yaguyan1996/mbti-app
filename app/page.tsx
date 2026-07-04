@@ -38,7 +38,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="gradient-text">認知機能</span>
+            <span className="gradient-text">SELF TYPE</span>
             <br />
             <span className="text-stone-800">自己理解アプリ</span>
           </h1>
@@ -94,7 +94,7 @@ export default function HomePage() {
             {[
               { number: '16', label: '性格タイプ' },
               { number: '8', label: '認知機能' },
-              { number: '20', label: '診断問題' },
+              { number: '32', label: '診断問題' },
             ].map((stat) => (
               <div key={stat.label}>
                 <div className="text-3xl font-bold gradient-text">{stat.number}</div>
