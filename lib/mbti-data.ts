@@ -370,230 +370,64 @@ export interface TestQuestion {
   text: string
   dimensionA: 'E' | 'S' | 'T' | 'J'
   dimensionB: 'I' | 'N' | 'F' | 'P'
-  options: [
-    { text: string; value: 'A' },
-    { text: string; value: 'B' }
-  ]
+  labelA: string
+  labelB: string
 }
 
 export const testQuestions: TestQuestion[] = [
-  // E/I Questions (5)
-  {
-    id: 1,
-    text: '週末の過ごし方として、より自分らしいと感じるのはどちらですか？',
-    dimensionA: 'E',
-    dimensionB: 'I',
-    options: [
-      { text: '友人や知人と外出して、新しい場所や人々と積極的に交流する', value: 'A' },
-      { text: '一人か少人数で過ごし、自分の興味あることに集中してリフレッシュする', value: 'B' },
-    ],
-  },
-  {
-    id: 2,
-    text: '初めて参加した集まりでは、どのような行動をとりますか？',
-    dimensionA: 'E',
-    dimensionB: 'I',
-    options: [
-      { text: '積極的に声をかけ、多くの人と会話を楽しむ', value: 'A' },
-      { text: '最初は観察し、気の合いそうな人を見つけてから深く話す', value: 'B' },
-    ],
-  },
-  {
-    id: 3,
-    text: '長時間一人でいると、あなたはどう感じますか？',
-    dimensionA: 'E',
-    dimensionB: 'I',
-    options: [
-      { text: '退屈や孤独を感じ、誰かと話したくなる', value: 'A' },
-      { text: '充電できる感覚があり、むしろエネルギーが回復する', value: 'B' },
-    ],
-  },
-  {
-    id: 4,
-    text: '考えを整理するとき、どちらが自然ですか？',
-    dimensionA: 'E',
-    dimensionB: 'I',
-    options: [
-      { text: '声に出して話しながら考えを整理する', value: 'A' },
-      { text: '頭の中でじっくり考えてから話す', value: 'B' },
-    ],
-  },
-  {
-    id: 5,
-    text: '仕事や学習で、あなたはどちらを好みますか？',
-    dimensionA: 'E',
-    dimensionB: 'I',
-    options: [
-      { text: 'チームで協力しながら、活発に意見交換して進める', value: 'A' },
-      { text: '一人で集中して深く取り組む', value: 'B' },
-    ],
-  },
-  // S/N Questions (5)
-  {
-    id: 6,
-    text: '新しい情報を学ぶとき、あなたはどちらが気になりますか？',
-    dimensionA: 'S',
-    dimensionB: 'N',
-    options: [
-      { text: '具体的な事実、データ、実際の使い方', value: 'A' },
-      { text: '背後にあるパターン、可能性、全体的な意味', value: 'B' },
-    ],
-  },
-  {
-    id: 7,
-    text: '問題を解決するとき、あなたはどちらのアプローチをとりますか？',
-    dimensionA: 'S',
-    dimensionB: 'N',
-    options: [
-      { text: '過去に実証された方法や、具体的な手順を重視する', value: 'A' },
-      { text: '新しいアイデアや独自の方法を試してみたくなる', value: 'B' },
-    ],
-  },
-  {
-    id: 8,
-    text: '日常の中で、あなたが注目しやすいのはどちらですか？',
-    dimensionA: 'S',
-    dimensionB: 'N',
-    options: [
-      { text: '目の前の具体的な現実や細かいディテール', value: 'A' },
-      { text: '物事が持つ可能性や、隠れた意味やつながり', value: 'B' },
-    ],
-  },
-  {
-    id: 9,
-    text: '将来について考えるとき、あなたはどちらの傾向がありますか？',
-    dimensionA: 'S',
-    dimensionB: 'N',
-    options: [
-      { text: '現実的で達成可能な近い将来の計画を立てる', value: 'A' },
-      { text: '大きなビジョンや理想的な将来像をよく思い描く', value: 'B' },
-    ],
-  },
-  {
-    id: 10,
-    text: '仕事や趣味において、あなたが得意なのはどちらですか？',
-    dimensionA: 'S',
-    dimensionB: 'N',
-    options: [
-      { text: '精度が求められる作業や、実際の経験から学ぶこと', value: 'A' },
-      { text: 'アイデアを出したり、概念的なことを考えること', value: 'B' },
-    ],
-  },
-  // T/F Questions (5)
-  {
-    id: 11,
-    text: '重要な決断をするとき、あなたは何を最も重視しますか？',
-    dimensionA: 'T',
-    dimensionB: 'F',
-    options: [
-      { text: '論理的な分析と客観的な基準', value: 'A' },
-      { text: '関わる人々の気持ちと価値観への配慮', value: 'B' },
-    ],
-  },
-  {
-    id: 12,
-    text: '友人がミスをしたとき、あなたはどちらの対応をしますか？',
-    dimensionA: 'T',
-    dimensionB: 'F',
-    options: [
-      { text: '問題点を明確に指摘し、改善策を提案する', value: 'A' },
-      { text: 'まず感情に寄り添い、気持ちを受け止める', value: 'B' },
-    ],
-  },
-  {
-    id: 13,
-    text: 'ディスカッションにおいて、あなたはどちらが得意ですか？',
-    dimensionA: 'T',
-    dimensionB: 'F',
-    options: [
-      { text: '論理的な議論を構築し、矛盾点を指摘する', value: 'A' },
-      { text: '全員の意見を尊重しながら、関係を保ちつつ議論する', value: 'B' },
-    ],
-  },
-  {
-    id: 14,
-    text: 'あなたが批判を受けたとき、最初に感じるのはどちらですか？',
-    dimensionA: 'T',
-    dimensionB: 'F',
-    options: [
-      { text: '批判の内容が論理的に正しいかどうかを考える', value: 'A' },
-      { text: '批判によって傷つき、感情的に反応してしまう', value: 'B' },
-    ],
-  },
-  {
-    id: 15,
-    text: 'あなたが最も大切にする価値観はどちらですか？',
-    dimensionA: 'T',
-    dimensionB: 'F',
-    options: [
-      { text: '真実と公正さ（たとえ不快でも正直であること）', value: 'A' },
-      { text: '思いやりと調和（人々の感情と関係を大切にすること）', value: 'B' },
-    ],
-  },
-  // J/P Questions (5)
-  {
-    id: 16,
-    text: '日常生活のスタイルとして、あなたに合うのはどちらですか？',
-    dimensionA: 'J',
-    dimensionB: 'P',
-    options: [
-      { text: 'スケジュールや計画を立て、それに沿って行動する', value: 'A' },
-      { text: '流れに任せ、その時々の状況に応じて柔軟に対応する', value: 'B' },
-    ],
-  },
-  {
-    id: 17,
-    text: '締め切りのある課題があるとき、あなたはどちらですか？',
-    dimensionA: 'J',
-    dimensionB: 'P',
-    options: [
-      { text: '余裕をもって早めに取りかかり、計画的に進める', value: 'A' },
-      { text: '締め切り直前のプレッシャーで集中力が増し、本領を発揮する', value: 'B' },
-    ],
-  },
-  {
-    id: 18,
-    text: '旅行の計画を立てるとき、あなたはどちらですか？',
-    dimensionA: 'J',
-    dimensionB: 'P',
-    options: [
-      { text: '事前に細かいスケジュールを立て、準備を十分に整える', value: 'A' },
-      { text: '大まかな目的地だけ決めて、現地での自由な探索を楽しむ', value: 'B' },
-    ],
-  },
-  {
-    id: 19,
-    text: '未解決の問題や宙ぶらりんの状況に対して、あなたはどう感じますか？',
-    dimensionA: 'J',
-    dimensionB: 'P',
-    options: [
-      { text: '早く結論を出してスッキリしたい', value: 'A' },
-      { text: '選択肢を開けておきたく、決定を急がない', value: 'B' },
-    ],
-  },
-  {
-    id: 20,
-    text: 'あなたの仕事や生活空間はどちらに近いですか？',
-    dimensionA: 'J',
-    dimensionB: 'P',
-    options: [
-      { text: '整理整頓され、体系立てられた状態を好む', value: 'A' },
-      { text: '少しカオスでも、自分の中に秩序があれば気にしない', value: 'B' },
-    ],
-  },
+  // ===== E / I (8問) =====
+  { id: 1, dimensionA: 'E', dimensionB: 'I', text: '仕事で大事な決断をする前、あなたは自然とどちらに向かいますか？', labelA: '誰かに話して考えを整理する', labelB: 'まず一人で頭の中で考え抜く' },
+  { id: 2, dimensionA: 'E', dimensionB: 'I', text: '大人数のイベントや飲み会が終わった後、あなたはどんな感覚ですか？', labelA: '楽しかった、もっと話したかった', labelB: '疲れた、一人になってほっとする' },
+  { id: 3, dimensionA: 'E', dimensionB: 'I', text: 'あなたが最も集中できるのはどんな状況ですか？', labelA: '周りに人がいて適度に活気がある場所', labelB: '誰にも邪魔されない静かな一人の空間' },
+  { id: 4, dimensionA: 'E', dimensionB: 'I', text: 'アイデアが浮かんだとき、あなたは最初にどうしますか？', labelA: 'すぐ誰かに話して反応をもらいながら深める', labelB: '自分の中で十分に温めてから話す' },
+  { id: 5, dimensionA: 'E', dimensionB: 'I', text: '仕事のモチベーションが上がるのはどんな時ですか？', labelA: 'チームで盛り上がって一緒に動いている時', labelB: '自分のペースで深く集中して取り組んでいる時' },
+  { id: 6, dimensionA: 'E', dimensionB: 'I', text: '初めて参加するグループでは、あなたはどちらに近いですか？', labelA: '自分から積極的に声をかけ、多くの人と話す', labelB: '様子を見て、気の合う人が見つかってから深く話す' },
+  { id: 7, dimensionA: 'E', dimensionB: 'I', text: '休日に何の予定もない時、自然とどちらに引き寄せられますか？', labelA: '誰かを誘うか、人がいる場所に出かける', labelB: '一人で好きなことに没頭してゆっくり過ごす' },
+  { id: 8, dimensionA: 'E', dimensionB: 'I', text: '感情的に辛いことがあった時、あなたはどうしますか？', labelA: '誰かに話して発散する', labelB: '一人で内省して自分なりに整理する' },
+
+  // ===== S / N (8問) =====
+  { id: 9, dimensionA: 'S', dimensionB: 'N', text: '新しいプロジェクトを任された時、最初に気になるのはどちらですか？', labelA: '具体的な手順・期日・必要なリソース', labelB: 'このプロジェクトの目的・意味・大きな方向性' },
+  { id: 10, dimensionA: 'S', dimensionB: 'N', text: '誰かの話を聞いていて、あなたが興味を持つのはどちらですか？', labelA: '実際に起きた出来事・具体的なエピソード', labelB: 'そこに潜むパターン・背景にある意味や可能性' },
+  { id: 11, dimensionA: 'S', dimensionB: 'N', text: '信頼できる判断基準はどちらですか？', labelA: '実際に試して効果が実証された方法', labelB: '論理的に正しいと感じる新しいアプローチ' },
+  { id: 12, dimensionA: 'S', dimensionB: 'N', text: '問題にぶつかった時、あなたはまず何を考えますか？', labelA: '過去に似たケースはなかったか、前例はどうだったか', labelB: '根本的にどういう構造の問題か、本質は何か' },
+  { id: 13, dimensionA: 'S', dimensionB: 'N', text: 'あなたの学び方はどちらに近いですか？', labelA: '具体的な事例・実践・経験から積み上げて理解する', labelB: '全体の概念・理論を先に把握してから細部に入る' },
+  { id: 14, dimensionA: 'S', dimensionB: 'N', text: '将来のことを考える時、あなたはどちらに向きますか？', labelA: '現実的で達成可能な近い将来の計画', labelB: '5年後・10年後の大きなビジョンや理想像' },
+  { id: 15, dimensionA: 'S', dimensionB: 'N', text: '仕事で最も力を発揮できるのはどんな場面ですか？', labelA: '正確さ・細部への注意が求められる作業', labelB: 'アイデア出し・概念的な設計・可能性を探る作業' },
+  { id: 16, dimensionA: 'S', dimensionB: 'N', text: '「なぜそうなるのか」を理解する時、あなたはどちらが腑に落ちますか？', labelA: '具体的な事実とデータで説明されると納得できる', labelB: '背後にあるメカニズムやパターンで説明されると納得できる' },
+
+  // ===== T / F (8問) =====
+  { id: 17, dimensionA: 'T', dimensionB: 'F', text: '親しい友人が悩みを打ち明けてきた時、あなたは自然とどうしますか？', labelA: '原因を分析して具体的な解決策を提案する', labelB: 'まず気持ちに寄り添い、とにかく聴く' },
+  { id: 18, dimensionA: 'T', dimensionB: 'F', text: '組織で不公平なルールがあった時、あなたはどちらを重視しますか？', labelA: '全員に同じ基準を適用することの公平さ', labelB: '一人ひとりの事情に配慮した柔軟な対応' },
+  { id: 19, dimensionA: 'T', dimensionB: 'F', text: '誰かの考えに同意できない時、あなたはどうしますか？', labelA: '論理的な矛盾を指摘し、正しい方向に是正する', labelB: '相手の気持ちを傷つけないよう言い方に気をつけながら伝える' },
+  { id: 20, dimensionA: 'T', dimensionB: 'F', text: '批判やネガティブなフィードバックを受けた時、最初の反応はどちらですか？', labelA: '内容が論理的に正しいかを考える（感情より内容）', labelB: '相手との関係や、どんな意図で言ったのかが気になる' },
+  { id: 21, dimensionA: 'T', dimensionB: 'F', text: 'チームで意見が割れた時、あなたはどう動きますか？', labelA: 'データと論拠を示して最も合理的な結論を導く', labelB: '全員が納得感を持てるよう、対話を重ねて合意を作る' },
+  { id: 22, dimensionA: 'T', dimensionB: 'F', text: '優れたリーダーシップとは何だと思いますか？', labelA: '目標を明確にして、結果を出すために厳しく導く力', labelB: 'チームの感情と関係を大切にして、人をひとつにする力' },
+  { id: 23, dimensionA: 'T', dimensionB: 'F', text: '正しいことを言う時と、相手が傷つくことを言わない時、どちらを優先しますか？', labelA: '正しいことを伝えることの方が長期的には相手のためになる', labelB: '今の関係と感情を守ることが優先されることが多い' },
+  { id: 24, dimensionA: 'T', dimensionB: 'F', text: '仕事での評価で、あなたが最も重視するのはどちらですか？', labelA: '成果・実績・能力', labelB: 'プロセス・姿勢・周囲への影響' },
+
+  // ===== J / P (8問) =====
+  { id: 25, dimensionA: 'J', dimensionB: 'P', text: '急に予定が変更になった時、あなたはどう感じますか？', labelA: 'ストレスを感じる、できれば変えたくない', labelB: '状況次第ではむしろ面白い、対応できる' },
+  { id: 26, dimensionA: 'J', dimensionB: 'P', text: '締め切りのある仕事、あなたはどちらのタイプですか？', labelA: '余裕をもって早めに仕上げて、見直し時間を確保する', labelB: '直前に集中力が上がり、追い込まれた時の方が力が出る' },
+  { id: 27, dimensionA: 'J', dimensionB: 'P', text: '旅行に行く時、あなたはどちらですか？', labelA: '宿・観光地・食事まで事前にリサーチして計画する', labelB: '大まかな方向だけ決めて、現地の流れを楽しむ' },
+  { id: 28, dimensionA: 'J', dimensionB: 'P', text: '仕事の進め方として、あなたに合うのはどちらですか？', labelA: '一つを完結させてから次に進む', labelB: '複数を同時に進めながら、その時の状況で優先順位を決める' },
+  { id: 29, dimensionA: 'J', dimensionB: 'P', text: '「まだ決めない」という状況に対して、あなたはどう感じますか？', labelA: '早く決めてスッキリしたい、宙ぶらりんは落ち着かない', labelB: '可能性を開けておきたい、焦って決める必要はない' },
+  { id: 30, dimensionA: 'J', dimensionB: 'P', text: '毎日のルーティンについて、あなたはどちらに近いですか？', labelA: '決まったリズムがあると安心して動きやすい', labelB: '毎日同じパターンより、その日の流れに合わせたい' },
+  { id: 31, dimensionA: 'J', dimensionB: 'P', text: 'やるべきことを管理する方法として、あなたはどちらですか？', labelA: 'リスト・スケジュール・計画表を作って管理する', labelB: '頭の中や直感で管理して、必要な時に動く' },
+  { id: 32, dimensionA: 'J', dimensionB: 'P', text: '仕事や生活空間について、あなたはどちらを自然と好みますか？', labelA: '整理整頓されていて体系的な状態', labelB: '少しカオスでも自分なりの秩序がある状態' },
 ]
 
-export function calculateMbtiType(answers: Record<number, 'A' | 'B'>): MbtiType {
+export function calculateMbtiType(answers: Record<number, number>): MbtiType {
   const scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 }
 
   testQuestions.forEach((q) => {
     const answer = answers[q.id]
-    if (!answer) return
-    if (answer === 'A') {
-      scores[q.dimensionA]++
-    } else {
-      scores[q.dimensionB]++
-    }
+    if (answer === undefined || answer === null) return
+    // 5-point scale: 1=strongly A, 2=somewhat A, 3=neutral, 4=somewhat B, 5=strongly B
+    if (answer === 1) { scores[q.dimensionA] += 2 }
+    else if (answer === 2) { scores[q.dimensionA] += 1 }
+    else if (answer === 4) { scores[q.dimensionB] += 1 }
+    else if (answer === 5) { scores[q.dimensionB] += 2 }
+    // answer === 3 → no score
   })
 
   const type =
