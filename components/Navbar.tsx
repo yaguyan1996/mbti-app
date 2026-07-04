@@ -35,6 +35,7 @@ export default function Navbar() {
             <NavLink href="/test">診断テスト</NavLink>
             <NavLink href="/guide">使い方</NavLink>
             {user && <NavLink href="/consultation">AI相談</NavLink>}
+            {user && <NavLink href="/agent">機能エージェント</NavLink>}
             {user && <NavLink href="/dashboard">ダッシュボード</NavLink>}
           </div>
 
@@ -112,6 +113,7 @@ export default function Navbar() {
             {user && (
               <>
                 <MobileNavLink href="/consultation" onClick={() => setMenuOpen(false)}>AI相談</MobileNavLink>
+                <MobileNavLink href="/agent" onClick={() => setMenuOpen(false)}>機能エージェント</MobileNavLink>
                 <MobileNavLink href="/dashboard" onClick={() => setMenuOpen(false)}>ダッシュボード</MobileNavLink>
               </>
             )}
