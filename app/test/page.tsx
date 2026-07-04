@@ -9,7 +9,7 @@ import type { MbtiType } from '@/lib/mbti-data'
 
 type Phase = 'intro' | 'test' | 'result'
 
-const SCALE_LABELS = ['当てはまる', '', 'どちらでも', '', '当てはまらない']
+const SCALE_LABELS = ['当てはまらない', '', 'どちらでも', '', '当てはまる']
 
 export default function TestPage() {
   const router = useRouter()
@@ -229,12 +229,6 @@ export default function TestPage() {
 
           {/* 5-point scale */}
           <div className="mb-6">
-            {/* Labels */}
-            <div className="flex justify-between text-xs text-stone-500 mb-3 px-1">
-              <span className="max-w-[35%] text-left font-medium text-stone-600">{question.labelA}</span>
-              <span className="max-w-[35%] text-right font-medium text-stone-600">{question.labelB}</span>
-            </div>
-
             {/* Scale buttons */}
             <div className="flex items-center gap-2">
               {[1, 2, 3, 4, 5].map((val) => {
