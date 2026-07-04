@@ -9,7 +9,7 @@ import type { MbtiType } from '@/lib/mbti-data'
 
 type Phase = 'intro' | 'test' | 'result'
 
-const SCALE_LABELS = ['← 強く近い', '', 'どちらでも', '', '強く近い →']
+const SCALE_LABELS = ['当てはまる', '', 'どちらでも', '', '当てはまらない']
 
 export default function TestPage() {
   const router = useRouter()
