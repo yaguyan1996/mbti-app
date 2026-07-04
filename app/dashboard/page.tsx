@@ -202,7 +202,7 @@ export default function DashboardPage() {
           >
             <div className="text-center mb-8">
               <div className="text-5xl mb-3">🔍</div>
-              <h2 className="text-2xl font-bold text-stone-800 mb-2">MBTIタイプを設定しましょう</h2>
+              <h2 className="text-2xl font-bold text-stone-800 mb-2">タイプを設定しましょう</h2>
               <p className="text-stone-500">診断テストを受けるか、すでにタイプを知っている場合は直接選択できます</p>
             </div>
 
@@ -277,7 +277,7 @@ export default function DashboardPage() {
           <QuickActionCard
             icon="📋"
             title="診断テスト"
-            description={typeData ? 'タイプを再診断する' : 'MBTIタイプを診断する'}
+            description={typeData ? 'タイプを再診断する' : 'タイプ診断を受ける'}
             href="/test"
             color="#6366f1"
           />
@@ -292,7 +292,7 @@ export default function DashboardPage() {
           <QuickActionCard
             icon="📚"
             title="16タイプ一覧"
-            description="全てのMBTIタイプを確認する"
+            description="全ての16タイプを確認する"
             href="/types"
             color="#10b981"
           />

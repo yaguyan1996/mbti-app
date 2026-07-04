@@ -24,7 +24,7 @@ export default function Navbar() {
               心
             </div>
             <span className="font-bold text-stone-800 group-hover:text-indigo-600 transition-colors">
-              MBTI 心理機能
+              認知機能アプリ
             </span>
           </Link>
 

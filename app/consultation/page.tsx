@@ -118,7 +118,7 @@ export default function ConsultationPage() {
               先に診断テストを受けてください
             </h2>
             <p className="text-stone-500 mb-6">
-              AI相談では、あなたのMBTIタイプと認知機能スタックに基づいたパーソナライズされたアドバイスを提供します。まずは診断テストを受けてください。
+              AI相談では、あなたのタイプと認知機能スタックに基づいたパーソナライズされたアドバイスを提供します。まずは診断テストを受けてください。
             </p>
             <Link
               href="/test"
@@ -590,7 +590,7 @@ export default function ConsultationPage() {
               </div>
             </div>
             <p className="text-center text-stone-400 text-xs mt-2">
-              Claude AIによるMBTI認知機能分析 · {typeData.type} スタック: {typeData.functions.dominant}→{typeData.functions.auxiliary}→{typeData.functions.tertiary}→{typeData.functions.inferior}
+              Claude AIによる認知機能分析 · {typeData.type} スタック: {typeData.functions.dominant}→{typeData.functions.auxiliary}→{typeData.functions.tertiary}→{typeData.functions.inferior}
             </p>
           </div>
         </div>

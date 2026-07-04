@@ -17,7 +17,7 @@ export async function POST(request: NextRequest) {
     const { mbtiType } = body
 
     if (!mbtiType) {
-      return NextResponse.json({ error: 'MBTIタイプが必要です' }, { status: 400 })
+      return NextResponse.json({ error: 'タイプが必要です' }, { status: 400 })
     }
 
     const updatedUser = await updateUserMbtiType(payload.userId, mbtiType)
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       user: sanitizeUser(updatedUser),
-      message: 'MBTIタイプを保存しました',
+      message: 'タイプを保存しました',
     })
   } catch {
     return NextResponse.json({ error: '保存に失敗しました' }, { status: 500 })

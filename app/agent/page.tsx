@@ -29,7 +29,7 @@ export default function AgentPage() {
           <div className="p-10 rounded-2xl text-center max-w-md" style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}>
             <div className="text-6xl mb-4">🧠</div>
             <h2 className="text-2xl font-bold text-stone-800 mb-3">先に診断テストを受けてください</h2>
-            <p className="text-stone-500 mb-6">エージェントはあなたのMBTIタイプに基づいてカスタマイズされます。</p>
+            <p className="text-stone-500 mb-6">エージェントはあなたのタイプに基づいてカスタマイズされます。</p>
             <Link href="/test" className="inline-block px-8 py-3 rounded-xl text-white font-semibold" style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}>
               診断テストを受ける
             </Link>

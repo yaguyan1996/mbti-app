@@ -53,7 +53,7 @@ export default function TestPage() {
       })
       if (res.ok) setSaved(true)
     } catch {
-      console.error('Failed to save MBTI type')
+      console.error('Failed to save type')
     } finally {
       setSaving(false)
     }
@@ -75,7 +75,7 @@ export default function TestPage() {
         <main className="pt-24 pb-16 px-4 flex items-center justify-center min-h-screen">
           <div className="max-w-2xl w-full text-center animate-fade-in">
             <div className="text-6xl mb-6">🧬</div>
-            <h1 className="text-4xl font-bold text-stone-800 mb-4">MBTI 診断テスト</h1>
+            <h1 className="text-4xl font-bold text-stone-800 mb-4">タイプ診断テスト</h1>
             <p className="text-stone-500 text-lg mb-2 leading-relaxed">
               32問の質問に直感的に答えてください。
             </p>
@@ -122,7 +122,7 @@ export default function TestPage() {
             <div className="text-center mb-8">
               <div className="text-5xl mb-4">🎉</div>
               <h1 className="text-3xl font-bold text-stone-800 mb-2">診断結果</h1>
-              <p className="text-stone-500">あなたのMBTIタイプが判明しました</p>
+              <p className="text-stone-500">あなたの認知機能タイプが判明しました</p>
             </div>
 
             <div className="p-8 rounded-2xl text-center mb-6"

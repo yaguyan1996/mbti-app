@@ -31,7 +31,7 @@ export default function TypesPage() {
         {/* Header */}
         <div className="text-center mb-10 animate-fade-in">
           <h1 className="text-4xl font-bold text-stone-800 mb-3">
-            16の<span className="gradient-text">MBTIタイプ</span>
+            16の<span className="gradient-text">性格タイプ</span>
           </h1>
           <p className="text-stone-500 max-w-2xl mx-auto">
             各タイプの認知機能スタック、特徴、強みと弱みを詳しく解説します

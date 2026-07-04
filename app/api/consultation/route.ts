@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     const user = await getUser(payload.userId)
     if (!user || !user.mbtiType) {
-      return NextResponse.json({ error: 'MBTIタイプが設定されていません' }, { status: 400 })
+      return NextResponse.json({ error: 'タイプが設定されていません' }, { status: 400 })
     }
 
     const body = await request.json()
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     const typeData = mbtiTypes[typeKey]
 
     if (!typeData) {
-      return NextResponse.json({ error: '無効なMBTIタイプです' }, { status: 400 })
+      return NextResponse.json({ error: '無効なタイプです' }, { status: 400 })
     }
 
     const { dominant, auxiliary, tertiary, inferior, opposing, criticalParent, trickster, demon } = typeData.functions

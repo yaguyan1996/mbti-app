@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
 
     const user = await getUser(payload.userId)
     if (!user || !user.mbtiType) {
-      return NextResponse.json({ error: 'MBTIタイプが設定されていません' }, { status: 400 })
+      return NextResponse.json({ error: 'タイプが設定されていません' }, { status: 400 })
     }
 
     const body = await request.json()
@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const typeKey = user.mbtiType as keyof typeof mbtiTypes
     const typeData = mbtiTypes[typeKey]
     if (!typeData) {
-      return NextResponse.json({ error: '無効なMBTIタイプです' }, { status: 400 })
+      return NextResponse.json({ error: '無効なタイプです' }, { status: 400 })
     }
 
     const funcData = cognitiveFunctions[funcId as CognitiveFunctionId]
@@ -62,7 +62,7 @@ export async function POST(request: NextRequest) {
     }
     const funcPosition = funcPositions[funcId] || '認知機能'
 
-    const systemPrompt = `あなたはMBTI認知機能の専門エージェントです。
+    const systemPrompt = `あなたはユング心理学の認知機能の専門エージェントです。
 ユーザーのMBTIタイプは${user.mbtiType}（${typeData.name}）です。
 
 【今回の担当機能】

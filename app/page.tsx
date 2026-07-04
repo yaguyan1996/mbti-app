@@ -38,13 +38,13 @@ export default function HomePage() {
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="gradient-text">MBTI</span>
+            <span className="gradient-text">認知機能</span>
             <br />
             <span className="text-stone-800">自己理解アプリ</span>
           </h1>
 
           <p className="text-xl text-stone-500 mb-10 max-w-2xl mx-auto leading-relaxed">
-            あなたのMBTIタイプを診断し、8つの認知機能の観点から
+            ユング心理学の認知機能理論で16タイプを診断し、8つの認知機能の観点から
             深い自己理解と成長をAIと共に探求しましょう。
           </p>
 
@@ -92,7 +92,7 @@ export default function HomePage() {
           {/* Stats */}
           <div className="flex flex-wrap justify-center gap-8 text-center">
             {[
-              { number: '16', label: 'MBTIタイプ' },
+              { number: '16', label: '性格タイプ' },
               { number: '8', label: '認知機能' },
               { number: '20', label: '診断問題' },
             ].map((stat) => (
@@ -118,7 +118,7 @@ export default function HomePage() {
             <FeatureCard
               icon="🧬"
               title="タイプ診断"
-              description="20問の質問に答えて、あなたのMBTIタイプを特定します。E/I、S/N、T/F、J/Pの4軸を詳しく分析します。"
+              description="32問の質問に答えて、あなたの認知機能タイプを特定します。E/I、S/N、T/F、J/Pの4軸を詳しく分析します。"
               href="/test"
               color="#6366f1"
             />
@@ -132,7 +132,7 @@ export default function HomePage() {
             <FeatureCard
               icon="💬"
               title="AI相談"
-              description="Claude AIがあなたのMBTIタイプと認知機能スタックを踏まえ、日常の悩みや人生の課題に対して深い洞察とアドバイスを提供します。"
+              description="Claude AIがあなたのタイプと認知機能スタックを踏まえ、日常の悩みや人生の課題に対して深い洞察とアドバイスを提供します。"
               href={user ? '/consultation' : '/register'}
               color="#f59e0b"
             />
@@ -147,7 +147,7 @@ export default function HomePage() {
             認知機能とは？
           </h2>
           <p className="text-stone-500 text-center mb-12 max-w-2xl mx-auto">
-            MBTIは4文字だけでなく、8つの認知機能の組み合わせによって人の思考・感情・知覚のパターンを深く理解します
+            ユング心理学の16タイプは4文字だけでなく、8つの認知機能の組み合わせによって人の思考・感情・知覚のパターンを深く理解します
           </p>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -229,7 +229,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="py-8 px-4 text-center text-stone-500 border-t border-stone-200">
-        <p>© 2024 MBTI 自己理解アプリ. Powered by Claude AI.</p>
+        <p>© 2024 認知機能 自己理解アプリ. Powered by Claude AI.</p>
       </footer>
     </div>
   )
