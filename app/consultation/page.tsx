@@ -326,8 +326,48 @@ export default function ConsultationPage() {
               />
             ))}
 
+            {/* よく使っている機能 */}
             <div className="mt-4 pt-4 border-t border-stone-200">
-              <p className="text-stone-500 text-xs leading-relaxed">
+              <div className="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">
+                💪 よく使っている機能
+              </div>
+              <div className="space-y-2 mb-4">
+                {[
+                  { funcId: typeData.functions.dominant, label: '主機能', desc: '最も自然に使える得意な機能' },
+                  { funcId: typeData.functions.auxiliary, label: '補助機能', desc: '主機能を支え、バランスをとる' },
+                ].map(({ funcId, label, desc }) => (
+                  <div key={funcId} className="p-2 rounded-lg"
+                    style={{ background: `${typeData.color}10`, border: `1px solid ${typeData.color}20` }}>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-sm" style={{ color: typeData.color }}>{funcId}</span>
+                      <span className="text-xs text-stone-500">{label}</span>
+                    </div>
+                    <p className="text-xs text-stone-500 mt-0.5">{desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* 課題と向き合っている機能 */}
+              <div className="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">
+                🌱 課題と向き合っている機能
+              </div>
+              <div className="space-y-2 mb-4">
+                {[
+                  { funcId: typeData.functions.inferior, label: '劣等機能', desc: 'ストレス時に暴走しやすく、最大の成長領域' },
+                  { funcId: typeData.functions.tertiary, label: '第3機能', desc: '発達途上で、使いすぎると疲弊しやすい' },
+                ].map(({ funcId, label, desc }) => (
+                  <div key={funcId} className="p-2 rounded-lg"
+                    style={{ background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)' }}>
+                    <div className="flex items-center gap-2">
+                      <span className="font-bold text-sm" style={{ color: '#d97706' }}>{funcId}</span>
+                      <span className="text-xs text-stone-500">{label}</span>
+                    </div>
+                    <p className="text-xs text-stone-500 mt-0.5">{desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-stone-400 text-xs leading-relaxed">
                 AIはこれらの認知機能の視点から、あなたへのアドバイスをカスタマイズします。
               </p>
             </div>
