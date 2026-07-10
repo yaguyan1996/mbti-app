@@ -165,23 +165,24 @@ export default function ConsultationPage() {
     setMessages([...newMessages, assistantMessage])
 
     try {
-      // エラーメッセージを除外し、user→assistant が交互になるよう整形
-      const filtered = newMessages.slice(0, -1)
-        .filter(m => m.content.trim() !== '' && !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー'))
-        .slice(-12)
-      const alternating: { role: string; content: string }[] = []
-      for (const m of filtered) {
-        if (alternating.length > 0 && alternating[alternating.length - 1].role === m.role) {
-          alternating[alternating.length - 1] = { role: m.role, content: m.content.slice(0, 1500) }
+      // 有効な会話履歴のみ抽出（エラー・空白除外、交互構造保証）
+      const validMessages = newMessages.slice(0, -1).filter(
+        m => m.content.trim() !== '' && !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー')
+      )
+      const pairs: { role: string; content: string }[] = []
+      for (const m of validMessages) {
+        const last = pairs[pairs.length - 1]
+        if (last && last.role === m.role) {
+          pairs[pairs.length - 1] = { role: m.role, content: m.content.slice(0, 1000) }
         } else {
-          alternating.push({ role: m.role, content: m.content.slice(0, 1500) })
+          pairs.push({ role: m.role, content: m.content.slice(0, 1000) })
         }
       }
-      // 末尾がuserで終わる場合は除去（現在のユーザーメッセージと連続するため）
-      while (alternating.length > 0 && alternating[alternating.length - 1].role === 'user') {
-        alternating.pop()
-      }
-      const history = alternating.slice(-6)
+      // 末尾がuserなら除去（現在のuserと連続するため）
+      while (pairs.length > 0 && pairs[pairs.length - 1].role === 'user') pairs.pop()
+      // 先頭がassistantなら除去（userから始まる必要がある）
+      while (pairs.length > 0 && pairs[0].role === 'assistant') pairs.shift()
+      const history = pairs.slice(-4)
 
       const res = await fetch('/api/consultation', {
         method: 'POST',
