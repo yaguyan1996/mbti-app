@@ -83,13 +83,17 @@ export default function ConsultationPage() {
   useEffect(() => {
     if (!historyLoaded || messages.length === 0) return
     const timer = setTimeout(() => {
+      // エラーメッセージを除外し、直近20件のみ保存
+      const saveMessages = messages
+        .filter(m => !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー'))
+        .slice(-20)
       fetch('/api/conversations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          messages: messages.map((m) => ({
+          messages: saveMessages.map((m) => ({
             role: m.role,
-            content: m.content,
+            content: m.content.slice(0, 2000),
             timestamp: m.timestamp.toISOString(),
           })),
         }),
@@ -161,10 +165,13 @@ export default function ConsultationPage() {
     setMessages([...newMessages, assistantMessage])
 
     try {
-      const history = newMessages.slice(0, -1).map((m) => ({
-        role: m.role,
-        content: m.content,
-      }))
+      const history = newMessages.slice(0, -1)
+        .filter(m => !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー'))
+        .slice(-6)
+        .map((m) => ({
+          role: m.role,
+          content: m.content.slice(0, 1500),
+        }))
 
       const res = await fetch('/api/consultation', {
         method: 'POST',
