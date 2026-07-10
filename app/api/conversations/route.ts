@@ -9,7 +9,11 @@ export async function GET(request: NextRequest) {
   const payload = await verifyToken(token)
   if (!payload) return NextResponse.json({ error: 'トークンが無効です' }, { status: 401 })
 
-  const messages = await loadConversation(payload.userId)
+  const raw = await loadConversation(payload.userId)
+  // エラーメッセージと空メッセージを除外して返す
+  const messages = raw.filter(
+    (m: StoredMessage) => m.content && m.content.trim() !== '' && !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー')
+  ).slice(-20)
   return NextResponse.json({ messages })
 }
 
