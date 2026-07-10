@@ -31,8 +31,11 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'メッセージが必要です' }, { status: 400 })
     }
 
-    // 直近20件に制限してトークン上限を防ぐ
-    const trimmedHistory = conversationHistory.slice(-20)
+    // 直近10件に制限してトークン上限を防ぐ（各メッセージも2000文字でカット）
+    const trimmedHistory = conversationHistory.slice(-10).map((m: { role: string; content: string }) => ({
+      ...m,
+      content: m.content.slice(0, 2000),
+    }))
 
     const typeKey = user.mbtiType as keyof typeof mbtiTypes
     const typeData = mbtiTypes[typeKey]
