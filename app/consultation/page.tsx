@@ -165,13 +165,19 @@ export default function ConsultationPage() {
     setMessages([...newMessages, assistantMessage])
 
     try {
-      const history = newMessages.slice(0, -1)
+      // エラーメッセージを除外し、ロールが交互になるよう整形
+      const filtered = newMessages.slice(0, -1)
         .filter(m => !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー'))
-        .slice(-6)
-        .map((m) => ({
-          role: m.role,
-          content: m.content.slice(0, 1500),
-        }))
+        .slice(-10)
+      const alternating: { role: string; content: string }[] = []
+      for (const m of filtered) {
+        if (alternating.length > 0 && alternating[alternating.length - 1].role === m.role) {
+          alternating[alternating.length - 1] = { role: m.role, content: m.content.slice(0, 1500) }
+        } else {
+          alternating.push({ role: m.role, content: m.content.slice(0, 1500) })
+        }
+      }
+      const history = alternating.slice(-6)
 
       const res = await fetch('/api/consultation', {
         method: 'POST',
