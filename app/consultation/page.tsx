@@ -152,20 +152,12 @@ export default function ConsultationPage() {
     }
 
     const newMessages = [...messages, userMessage]
-    setMessages(newMessages)
+    setMessages([...newMessages, { role: 'assistant', content: '', timestamp: new Date() }])
     setInput('')
     setIsStreaming(true)
 
-    // Add placeholder for assistant response
-    const assistantMessage: Message = {
-      role: 'assistant',
-      content: '',
-      timestamp: new Date(),
-    }
-    setMessages([...newMessages, assistantMessage])
-
     try {
-      // 有効な会話履歴のみ抽出（エラー・空白除外、交互構造保証）
+      // 有効な履歴のみ抽出（エラー除外・交互構造保証・最大4ペア）
       const validMessages = newMessages.slice(0, -1).filter(
         m => m.content.trim() !== '' && !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー')
       )
@@ -178,72 +170,27 @@ export default function ConsultationPage() {
           pairs.push({ role: m.role, content: m.content.slice(0, 1000) })
         }
       }
-      // 末尾がuserなら除去（現在のuserと連続するため）
       while (pairs.length > 0 && pairs[pairs.length - 1].role === 'user') pairs.pop()
-      // 先頭がassistantなら除去（userから始まる必要がある）
       while (pairs.length > 0 && pairs[0].role === 'assistant') pairs.shift()
       const history = pairs.slice(-4)
 
       const res = await fetch('/api/consultation', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: userMessage.content,
-          conversationHistory: history,
-          mode,
-        }),
+        body: JSON.stringify({ message: userMessage.content, conversationHistory: history, mode }),
       })
 
-      if (!res.ok) {
-        let errorMsg = `HTTP ${res.status}`
-        try {
-          const error = await res.json()
-          errorMsg = error.error || JSON.stringify(error)
-        } catch {
-          errorMsg = `HTTP ${res.status}: ${res.statusText}`
-        }
-        setMessages((prev) => {
-          const updated = [...prev]
-          updated[updated.length - 1].content = `エラー: ${errorMsg}`
-          return updated
-        })
-        return
-      }
+      const data = await res.json()
+      const resultText = (!res.ok || data.error)
+        ? `エラー: ${data.error || res.status}`
+        : (data.text || '')
 
-      const reader = res.body?.getReader()
-      const decoder = new TextDecoder()
-      let fullText = ''
-
-      if (reader) {
-        while (true) {
-          const { done, value } = await reader.read()
-          if (done) break
-
-          const chunk = decoder.decode(value)
-          const lines = chunk.split('\n')
-
-          for (const line of lines) {
-            if (line.startsWith('data: ')) {
-              const data = line.slice(6)
-              if (data === '[DONE]') break
-              try {
-                const parsed = JSON.parse(data)
-                if (parsed.text) {
-                  fullText += parsed.text
-                  setMessages((prev) => {
-                    const updated = [...prev]
-                    updated[updated.length - 1].content = fullText
-                    return updated
-                  })
-                }
-              } catch {
-                // ignore parse errors
-              }
-            }
-          }
-        }
-      }
-    } catch (error) {
+      setMessages((prev) => {
+        const updated = [...prev]
+        updated[updated.length - 1].content = resultText
+        return updated
+      })
+    } catch {
       setMessages((prev) => {
         const updated = [...prev]
         updated[updated.length - 1].content = 'ネットワークエラーが発生しました。もう一度お試しください。'
