@@ -165,10 +165,10 @@ export default function ConsultationPage() {
     setMessages([...newMessages, assistantMessage])
 
     try {
-      // エラーメッセージを除外し、ロールが交互になるよう整形
+      // エラーメッセージを除外し、user→assistant が交互になるよう整形
       const filtered = newMessages.slice(0, -1)
-        .filter(m => !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー'))
-        .slice(-10)
+        .filter(m => m.content.trim() !== '' && !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー'))
+        .slice(-12)
       const alternating: { role: string; content: string }[] = []
       for (const m of filtered) {
         if (alternating.length > 0 && alternating[alternating.length - 1].role === m.role) {
@@ -176,6 +176,10 @@ export default function ConsultationPage() {
         } else {
           alternating.push({ role: m.role, content: m.content.slice(0, 1500) })
         }
+      }
+      // 末尾がuserで終わる場合は除去（現在のユーザーメッセージと連続するため）
+      while (alternating.length > 0 && alternating[alternating.length - 1].role === 'user') {
+        alternating.pop()
       }
       const history = alternating.slice(-6)
 
