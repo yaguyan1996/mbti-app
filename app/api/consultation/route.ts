@@ -25,9 +25,9 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json()
-    const { message, conversationHistory = [], mode = 'open' } = body
+    const { message, conversationHistory = [], mode = 'open', imageData } = body
 
-    if (!message) {
+    if (!message && !imageData) {
       return NextResponse.json({ error: 'メッセージが必要です' }, { status: 400 })
     }
 
@@ -113,9 +113,23 @@ STEP 1〜3（状況把握・背景理解・問題提起）を丁寧に行い、�
 
     const finalSystemPrompt = systemPrompt + (modeInstructions[mode as string] ?? '')
 
+    const userContent = imageData
+      ? [
+          {
+            type: 'image' as const,
+            source: {
+              type: 'base64' as const,
+              media_type: imageData.mimeType as 'image/jpeg' | 'image/png' | 'image/gif' | 'image/webp',
+              data: imageData.base64 as string,
+            },
+          },
+          { type: 'text' as const, text: message || 'この画像について、私の認知機能の観点からアドバイスをください。' },
+        ]
+      : message
+
     const messages = [
       ...trimmedHistory,
-      { role: 'user' as const, content: message },
+      { role: 'user' as const, content: userContent },
     ]
 
     const response = await client.messages.create({
