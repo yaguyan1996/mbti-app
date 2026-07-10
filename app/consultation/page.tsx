@@ -177,10 +177,16 @@ export default function ConsultationPage() {
       })
 
       if (!res.ok) {
-        const error = await res.json()
+        let errorMsg = `HTTP ${res.status}`
+        try {
+          const error = await res.json()
+          errorMsg = error.error || JSON.stringify(error)
+        } catch {
+          errorMsg = `HTTP ${res.status}: ${res.statusText}`
+        }
         setMessages((prev) => {
           const updated = [...prev]
-          updated[updated.length - 1].content = `エラー: ${error.error || '相談に失敗しました'}`
+          updated[updated.length - 1].content = `エラー: ${errorMsg}`
           return updated
         })
         return
