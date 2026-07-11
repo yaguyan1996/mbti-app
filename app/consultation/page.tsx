@@ -62,6 +62,7 @@ export default function ConsultationPage() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
   const dropdownRef = useRef<HTMLDivElement>(null)
+  const sessionsDropdownRef = useRef<HTMLDivElement>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
@@ -105,6 +106,9 @@ export default function ConsultationPage() {
     const handleClickOutside = (e: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
         setShowModeDropdown(false)
+      }
+      if (sessionsDropdownRef.current && !sessionsDropdownRef.current.contains(e.target as Node)) {
+        setShowSessions(false)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
@@ -331,56 +335,6 @@ export default function ConsultationPage() {
     <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#faf7f0' }}>
       <Navbar />
 
-      {/* Sessions overlay */}
-      {showSessions && (
-        <div className="fixed inset-0 z-30" onClick={() => setShowSessions(false)} />
-      )}
-
-      {/* Sessions Sidebar */}
-      <div
-        className={`fixed left-0 top-16 bottom-0 w-56 z-40 flex flex-col transition-transform duration-200 ${showSessions ? 'translate-x-0' : '-translate-x-full'}`}
-        style={{ background: '#fff9f0', borderRight: '1px solid rgba(99,102,241,0.15)' }}
-      >
-        <div className="p-3" style={{ borderBottom: '1px solid rgba(99,102,241,0.1)' }}>
-          <button
-            onClick={newChat}
-            className="w-full py-2 px-3 rounded-xl text-sm font-medium text-white flex items-center justify-center gap-1.5 transition-opacity hover:opacity-90"
-            style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
-          >
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
-            </svg>
-            新しいチャット
-          </button>
-        </div>
-        <div className="flex-1 overflow-y-auto py-1">
-          {sessions.length === 0 ? (
-            <p className="text-center text-stone-400 text-xs px-3 py-6">履歴なし</p>
-          ) : (
-            sessions.map(session => (
-              <div
-                key={session.id}
-                onClick={() => switchSession(session.id)}
-                className="px-3 py-2.5 cursor-pointer group relative hover:bg-indigo-50/60 transition-colors"
-                style={currentSessionId === session.id ? { background: 'rgba(99,102,241,0.1)' } : {}}
-              >
-                <div className="text-xs font-medium text-stone-700 truncate pr-5 leading-snug">
-                  {session.title || '新しい相談'}
-                </div>
-                <div className="text-xs text-stone-400 mt-0.5">
-                  {formatSessionDate(session.updatedAt)} · {session.messageCount}件
-                </div>
-                <button
-                  onClick={e => deleteSession(session.id, e)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-stone-400 hover:text-red-400 w-5 h-5 flex items-center justify-center rounded text-sm transition-all"
-                >
-                  ×
-                </button>
-              </div>
-            ))
-          )}
-        </div>
-      </div>
 
       <div className="flex flex-1 pt-16" style={{ height: 'calc(100vh - 0px)' }}>
         {/* Right Sidebar - Function Stack */}
@@ -466,15 +420,60 @@ export default function ConsultationPage() {
           {/* Chat Header */}
           <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: '1px solid rgba(99,102,241,0.15)' }}>
             <div className="flex items-center gap-2">
-              <button
-                onClick={() => setShowSessions(!showSessions)}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs text-stone-500 hover:text-indigo-600 hover:bg-indigo-50 transition-all"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                </svg>
-                <span className="hidden sm:inline">{sessions.length > 0 ? `${sessions.length}件の履歴` : '履歴'}</span>
-              </button>
+              <div className="relative" ref={sessionsDropdownRef}>
+                <button
+                  onClick={() => setShowSessions(!showSessions)}
+                  className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs text-stone-500 hover:text-indigo-600 hover:bg-indigo-50 transition-all"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                  </svg>
+                  <span className="hidden sm:inline">{sessions.length > 0 ? `${sessions.length}件の履歴` : '履歴'}</span>
+                </button>
+                {showSessions && (
+                  <div className="absolute top-full left-0 mt-1 w-64 rounded-xl shadow-xl z-50 overflow-hidden" style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}>
+                    <div className="p-2" style={{ borderBottom: '1px solid rgba(99,102,241,0.1)' }}>
+                      <button
+                        onClick={newChat}
+                        className="w-full py-2 px-3 rounded-lg text-sm font-medium text-white flex items-center justify-center gap-1.5 hover:opacity-90 transition-opacity"
+                        style={{ background: 'linear-gradient(135deg, #6366f1, #8b5cf6)' }}
+                      >
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                        </svg>
+                        新しいチャット
+                      </button>
+                    </div>
+                    <div className="overflow-y-auto" style={{ maxHeight: '320px' }}>
+                      {sessions.length === 0 ? (
+                        <p className="text-center text-stone-400 text-xs px-3 py-6">履歴なし</p>
+                      ) : (
+                        sessions.map(session => (
+                          <div
+                            key={session.id}
+                            onClick={() => switchSession(session.id)}
+                            className="px-3 py-2.5 cursor-pointer group relative hover:bg-indigo-50 transition-colors"
+                            style={currentSessionId === session.id ? { background: 'rgba(99,102,241,0.1)' } : {}}
+                          >
+                            <div className="text-xs font-medium text-stone-700 truncate pr-6 leading-snug">
+                              {session.title || '新しい相談'}
+                            </div>
+                            <div className="text-xs text-stone-400 mt-0.5">
+                              {formatSessionDate(session.updatedAt)} · {session.messageCount}件
+                            </div>
+                            <button
+                              onClick={e => deleteSession(session.id, e)}
+                              className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 text-stone-400 hover:text-red-400 w-5 h-5 flex items-center justify-center rounded text-sm transition-all"
+                            >
+                              ×
+                            </button>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
               <div>
                 <h1 className="text-stone-800 font-bold">AI 認知機能メンター</h1>
                 <p className="text-stone-500 text-xs">{typeData.type}の認知機能スタックに基づいたパーソナライズ相談</p>
