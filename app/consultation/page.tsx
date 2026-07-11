@@ -431,7 +431,9 @@ export default function ConsultationPage() {
                   <span className="hidden sm:inline">{sessions.length > 0 ? `${sessions.length}件の履歴` : '履歴'}</span>
                 </button>
                 {showSessions && (
-                  <div className="absolute top-full left-0 mt-1 w-64 rounded-xl shadow-xl z-50 overflow-hidden" style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}>
+                  <>
+                    <div className="fixed inset-0 z-[90]" onClick={() => setShowSessions(false)} />
+                    <div className="fixed top-[112px] left-4 w-64 rounded-xl shadow-2xl z-[100] overflow-hidden" style={{ background: '#fff9f0', border: '1px solid rgba(99,102,241,0.2)' }}>
                     <div className="p-2" style={{ borderBottom: '1px solid rgba(99,102,241,0.1)' }}>
                       <button
                         onClick={newChat}
@@ -472,6 +474,7 @@ export default function ConsultationPage() {
                       )}
                     </div>
                   </div>
+                  </>
                 )}
               </div>
               <div>
