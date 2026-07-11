@@ -102,7 +102,17 @@ export async function POST(request: NextRequest) {
       messages,
     })
 
-    const text = response.content[0]?.type === 'text' ? response.content[0].text : ''
+    const raw = response.content[0]?.type === 'text' ? response.content[0].text : ''
+    const text = raw
+      .replace(/```[\s\S]*?```/g, '')      // コードブロック除去
+      .replace(/^---+$/gm, '')             // 水平線除去
+      .replace(/^#{1,3}\s+/gm, '')         // 見出し記号除去
+      .replace(/\*\*(.+?)\*\*/g, '$1')     // 太字記号除去
+      .replace(/\*(.+?)\*/g, '$1')         // 斜体記号除去
+      .replace(/^[`]{3}.*$/gm, '')         // バッククォート行除去
+      .replace(/`(.+?)`/g, '$1')           // インラインコード除去
+      .replace(/\n{3,}/g, '\n\n')          // 3行以上の空行を2行に
+      .trim()
     return NextResponse.json({ text })
   } catch (err: unknown) {
     const msg = err instanceof Error ? err.message : String(err)
