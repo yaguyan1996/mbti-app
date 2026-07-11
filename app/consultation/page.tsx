@@ -9,6 +9,7 @@ import CognitiveFunctionCard from '@/components/CognitiveFunctionCard'
 import { useAuth } from '@/lib/hooks/useAuth'
 import { mbtiTypes, cognitiveFunctions } from '@/lib/mbti-data'
 import type { MbtiType, CognitiveFunctionId } from '@/lib/mbti-data'
+import ReactMarkdown from 'react-markdown'
 
 type ConsultationMode = 'analyze' | 'solve' | 'empathize' | 'open'
 
@@ -603,8 +604,25 @@ export default function ConsultationPage() {
                         <img src={msg.imageData} alt="添付画像" className="max-w-xs rounded-lg mb-2 block" style={{ maxHeight: '200px', objectFit: 'contain' }} />
                       )}
                       {msg.content ? (
-                        <div className="whitespace-pre-wrap text-sm leading-relaxed">
-                          {msg.content}
+                        <div className="text-sm leading-relaxed">
+                          {msg.role === 'assistant' ? (
+                            <ReactMarkdown
+                              components={{
+                                p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                                ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-0.5">{children}</ul>,
+                                ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-0.5">{children}</ol>,
+                                li: ({ children }) => <li className="leading-snug">{children}</li>,
+                                h1: ({ children }) => <p className="font-bold mt-3 mb-1 first:mt-0">{children}</p>,
+                                h2: ({ children }) => <p className="font-bold mt-3 mb-1 first:mt-0">{children}</p>,
+                                h3: ({ children }) => <p className="font-semibold mt-2 mb-1 first:mt-0">{children}</p>,
+                              }}
+                            >
+                              {msg.content}
+                            </ReactMarkdown>
+                          ) : (
+                            <span className="whitespace-pre-wrap">{msg.content}</span>
+                          )}
                           {isStreaming && idx === messages.length - 1 && (
                             <span className="inline-block w-0.5 h-4 ml-0.5 align-middle" style={{ background: '#6366f1', animation: 'blink 1s step-end infinite' }} />
                           )}
