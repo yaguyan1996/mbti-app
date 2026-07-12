@@ -69,9 +69,9 @@ export async function loadSessions(userId: string): Promise<Session[]> {
 }
 
 export async function saveSessions(userId: string, sessions: Session[]): Promise<void> {
-  const trimmed = sessions.slice(-20).map(s => ({
+  const trimmed = sessions.slice(-200).map(s => ({
     ...s,
-    messages: s.messages.slice(-100),
+    messages: s.messages.slice(-2000),
   }))
   if (useKV()) {
     await kvSet(`sessions:${userId}`, trimmed)

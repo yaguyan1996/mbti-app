@@ -121,7 +121,6 @@ export default function ConsultationPage() {
     const timer = setTimeout(async () => {
       const saveMessages = messages
         .filter(m => !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー'))
-        .slice(-20)
       const firstUser = saveMessages.find(m => m.role === 'user')
       const title = firstUser?.content?.slice(0, 25)
       try {

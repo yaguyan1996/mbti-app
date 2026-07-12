@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
 
   const messages = raw.filter(
     m => m.content && m.content.trim() !== '' && !m.content.startsWith('エラー:') && !m.content.startsWith('ネットワークエラー')
-  ).slice(-20)
+  )
   return NextResponse.json({ messages })
 }
 
